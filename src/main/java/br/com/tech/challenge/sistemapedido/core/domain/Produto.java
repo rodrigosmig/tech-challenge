@@ -1,15 +1,17 @@
 package br.com.tech.challenge.sistemapedido.core.domain;
 
-import java.math.BigDecimal;
+import br.com.tech.challenge.sistemapedido.core.domain.vo.Descricao;
+import br.com.tech.challenge.sistemapedido.core.domain.vo.Nome;
+import br.com.tech.challenge.sistemapedido.core.domain.vo.Preco;
 
 public class Produto {
     private Long id;
-    private String nome;
+    private Nome nome;
     private Categoria categoria;
-    private String descricao;
-    private BigDecimal preco;
+    private Descricao descricao;
+    private Preco preco;
 
-    public Produto(Long id, String nome, Categoria categoria, String descricao, BigDecimal preco) {
+    public Produto(Long id, Nome nome, Categoria categoria, Descricao descricao, Preco preco) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
@@ -17,7 +19,7 @@ public class Produto {
         this.preco = preco;
     }
 
-    public Produto(String nome, Categoria categoria, String descricao, BigDecimal preco) {
+    public Produto(Nome nome, Categoria categoria, Descricao descricao, Preco preco) {
         this.nome = nome;
         this.categoria = categoria;
         this.descricao = descricao;
@@ -28,7 +30,7 @@ public class Produto {
         return id;
     }
 
-    public String getNome() {
+    public Nome getNome() {
         return nome;
     }
 
@@ -36,11 +38,11 @@ public class Produto {
         return categoria;
     }
 
-    public BigDecimal getPreco() {
+    public Preco getPreco() {
         return preco;
     }
 
-    public String getDescricao() {
+    public Descricao getDescricao() {
         return descricao;
     }
 }
