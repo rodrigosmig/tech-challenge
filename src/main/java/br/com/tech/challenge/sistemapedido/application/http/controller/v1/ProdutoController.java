@@ -1,9 +1,10 @@
 package br.com.tech.challenge.sistemapedido.application.http.controller.v1;
 
+import br.com.tech.challenge.sistemapedido.application.http.controller.v1.openapi.ProdutoControllerOpenApi;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.ProdutoRequest;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ProdutoResponse;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.CadastrarProdutoResponse;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarProdutosResponse;
+import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ProdutoResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.ProdutoDataMapper;
 import br.com.tech.challenge.sistemapedido.core.usecase.produto.AlterarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.core.usecase.produto.BuscarProdutoUseCase;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("v1/produtos")
-public class ProdutoController {
+public class ProdutoController implements ProdutoControllerOpenApi {
     private final BuscarProdutoUseCase buscarProdutoUseCase;
     private final CadastrarProdutoUseCase cadastrarProdutoUseCase;
     private final AlterarProdutoUseCase alterarProdutoUseCase;
