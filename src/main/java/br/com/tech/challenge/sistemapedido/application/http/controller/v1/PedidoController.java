@@ -1,0 +1,40 @@
+package br.com.tech.challenge.sistemapedido.application.http.controller.v1;
+
+import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.PedidoRequest;
+import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.CadastrarPedidoResponse;
+import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarPedidosResponse;
+import br.com.tech.challenge.sistemapedido.application.http.mapper.ItemPedidoDataMapper;
+import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
+import br.com.tech.challenge.sistemapedido.core.usecase.pedido.BuscarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.core.usecase.pedido.CriarPedidoUseCase;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("v1/pedidos")
+public class PedidoController {
+    private final CriarPedidoUseCase criarPedidoUseCase;
+    private final BuscarPedidoUseCase buscarPedidoUseCase;
+
+    private final ItemPedidoDataMapper itemPedidoMapper;
+    private final PedidoDataMapper pedidoMapper;
+
+    @PostMapping
+    public ResponseEntity<CadastrarPedidoResponse> criar(@RequestBody PedidoRequest request) {
+        var pedido = criarPedidoUseCase.criar(itemPedidoMapper.toDomainList(request.itens()));
+        var resposta = new CadastrarPedidoResponse(pedido.getId());
+
+        return new ResponseEntity<>(resposta, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<ListarPedidosResponse> listar() {
+        var pedidos = buscarPedidoUseCase.buscarTodos();
+        var resposta = new ListarPedidosResponse(pedidoMapper.toList(pedidos));
+
+        return new ResponseEntity<>(resposta, HttpStatus.CREATED);
+    }
+}

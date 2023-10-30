@@ -22,10 +22,12 @@ public class ProdutoDataMapper {
     }
 
     public Produto toDomain(ProdutoRequest request) {
-        return new Produto(new Nome(request.nome()),
-                Categoria.valueOf(request.categoria().toUpperCase()),
-                new Descricao(request.descricao()),
-                new Preco(request.preco()));
+        return Produto.builder()
+                .nome(new Nome(request.nome()))
+                .categoria(Categoria.valueOf(request.categoria().toUpperCase()))
+                .descricao(new Descricao(request.descricao()))
+                .preco(new Preco(request.preco()))
+                .build();
     }
 
     public List<ProdutoDTO> toList(List<Produto> produtos) {
