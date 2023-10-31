@@ -7,4 +7,5 @@ import java.util.List;
 public interface BuscarPedidoUseCase {
     Pedido buscarPorId(Long id);
     List<Pedido> buscarTodos();
+    List<Pedido> buscarFilaRestaurante();
 }

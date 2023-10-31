@@ -22,6 +22,7 @@ public class PedidoDataMapper {
                 pedido.getDataCriacao().getData(),
                 pedido.getDataAtualizacao().getData(),
                 pedido.getTotal().getPreco(),
+                pedido.estaPago(),
                 itens);
     }
 

@@ -7,6 +7,7 @@ import br.com.tech.challenge.sistemapedido.application.http.mapper.ItemPedidoDat
 import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.core.usecase.pedido.BuscarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.core.usecase.pedido.CriarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.core.usecase.pedido.PagarPedidoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class PedidoController {
     private final CriarPedidoUseCase criarPedidoUseCase;
     private final BuscarPedidoUseCase buscarPedidoUseCase;
+    private final PagarPedidoUseCase pagarPedidoUseCase;
 
     private final ItemPedidoDataMapper itemPedidoMapper;
     private final PedidoDataMapper pedidoMapper;
@@ -36,5 +38,12 @@ public class PedidoController {
         var resposta = new ListarPedidosResponse(pedidoMapper.toList(pedidos));
 
         return new ResponseEntity<>(resposta, HttpStatus.CREATED);
+    }
+
+    @PostMapping("{idPedido}/pagar")
+    public ResponseEntity<Void> pagar(@PathVariable Long idPedido) {
+        pagarPedidoUseCase.pagar(idPedido);
+
+        return ResponseEntity.noContent().build();
     }
 }

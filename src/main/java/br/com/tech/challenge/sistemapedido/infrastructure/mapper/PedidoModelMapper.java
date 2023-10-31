@@ -19,6 +19,7 @@ public class PedidoModelMapper {
                 .dataCriacao(new Data(pedido.getDataCriacao()))
                 .dataAtualizacao(new Data(pedido.getDataAtualizacao()))
                 .total(new Preco(pedido.getTotal()))
+                .pago(pedido.getPago())
                 .build();
 
         var itens = pedido.getItens().stream()
@@ -41,6 +42,7 @@ public class PedidoModelMapper {
                 .dataCriacao(pedido.getDataCriacao().getData())
                 .dataAtualizacao(pedido.getDataAtualizacao().getData())
                 .total(pedido.getTotal().getPreco())
+                .pago(pedido.estaPago())
                 .build();
 
         var itens = pedido.getItens().stream()

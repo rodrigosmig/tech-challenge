@@ -11,4 +11,5 @@ public record PedidoDTO(Long id,
                         LocalDateTime dataCriacao,
                         LocalDateTime dataAtualizacao,
                         BigDecimal total,
+                        Boolean pago,
                         List<ItemPedidoDTO> itens) {}

@@ -23,6 +23,7 @@ public class PedidoModel {
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAtualizacao;
     private BigDecimal total;
+    private Boolean pago;
     @OneToMany(mappedBy = "pedido")
     @Setter
     private List<ItemPedidoModel> itens;

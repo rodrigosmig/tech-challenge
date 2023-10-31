@@ -42,6 +42,7 @@ public class CriarPedidoUseCaseImpl implements CriarPedidoUseCase {
                 .dataCriacao(new Data(LocalDateTime.now()))
                 .dataAtualizacao(new Data(LocalDateTime.now()))
                 .total(new Preco(BigDecimal.ONE))
+                .pago(Boolean.FALSE)
                 .itens(novosItens)
                 .build();
 

@@ -10,4 +10,7 @@ public interface PedidoRepository {
     Optional<Pedido> buscarPorId(Long id);
     List<Pedido> buscarTodos();
     Pedido salvar(Pedido pedido, List<ItemPedido> itemPedidos);
+    void pagar(Pedido pedido);
+    void alterarStatus();
+    List<Pedido> buscarFilaRestaurante();
 }
