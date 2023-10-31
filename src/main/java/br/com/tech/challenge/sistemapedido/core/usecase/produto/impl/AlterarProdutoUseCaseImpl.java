@@ -5,9 +5,7 @@ import br.com.tech.challenge.sistemapedido.core.repository.ProdutoRepository;
 import br.com.tech.challenge.sistemapedido.core.usecase.produto.AlterarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.core.usecase.produto.BuscarProdutoUseCase;
 import jakarta.inject.Named;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Named
 public class AlterarProdutoUseCaseImpl implements AlterarProdutoUseCase {
     private final ProdutoRepository repository;
