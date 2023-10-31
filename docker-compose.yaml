@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  meudinherim-mysql:
+  sistema-pedidos-mysql:
     image: mysql:8.0.33
     container_name: sistema-pedidos-db
     restart: unless-stopped
