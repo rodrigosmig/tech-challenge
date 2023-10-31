@@ -13,15 +13,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("v1/pedidos/fila")
-public class FilaRestauranteController {
+public class FilaController {
     private final BuscarPedidoUseCase buscarPedidoUseCase;
     private final PedidoDataMapper pedidoMapper;
 
-    @GetMapping
-    public ResponseEntity<ListarPedidosResponse> listar() {
+    @GetMapping("restaurante")
+    public ResponseEntity<ListarPedidosResponse> filaRestaurante() {
         var pedidos = buscarPedidoUseCase.buscarFilaRestaurante();
         var resposta = new ListarPedidosResponse(pedidoMapper.toList(pedidos));
 
-        return new ResponseEntity<>(resposta, HttpStatus.CREATED);
+        return new ResponseEntity<>(resposta, HttpStatus.OK);
+    }
+
+    @GetMapping("cliente")
+    public ResponseEntity<ListarPedidosResponse> filaCLiente() {
+        var pedidos = buscarPedidoUseCase.buscarFilaCliente();
+        var resposta = new ListarPedidosResponse(pedidoMapper.toList(pedidos));
+
+        return new ResponseEntity<>(resposta, HttpStatus.OK);
     }
 }

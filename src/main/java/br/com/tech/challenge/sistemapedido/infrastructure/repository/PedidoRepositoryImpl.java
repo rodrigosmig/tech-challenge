@@ -9,7 +9,9 @@ import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
 import br.com.tech.challenge.sistemapedido.infrastructure.event.publisher.PedidoPublisher;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ItemPedidoModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PedidoModelMapper;
+import br.com.tech.challenge.sistemapedido.infrastructure.model.FilaClienteModel;
 import br.com.tech.challenge.sistemapedido.infrastructure.model.FilaRestauranteModel;
+import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.FilaClienteRepositoryJpa;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.FilaRestauranteRepositoryJpa;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.ItemPedidoRepositoryJpa;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.PedidoRepositoryJpa;
@@ -27,6 +29,7 @@ public class PedidoRepositoryImpl implements PedidoRepository {
     private final PedidoRepositoryJpa pedidoRepository;
     private final ItemPedidoRepositoryJpa itemPedidoRepository;
     private final FilaRestauranteRepositoryJpa filaRestauranteRepository;
+    private final FilaClienteRepositoryJpa filaClienteRepositoryJpa;
     private final PedidoPublisher pedidoPublisher;
 
     private final PedidoModelMapper pedidoMapper;
@@ -82,11 +85,21 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 
     @Override
     public List<Pedido> buscarFilaRestaurante() {
-        var statusArray = new StatusPedido[]{StatusPedido.RECEBIDO, StatusPedido.EM_PREPARACAO};
-        var fila = filaRestauranteRepository.findAllByPedidoStatusIn(new LinkedList<>(Arrays.asList(statusArray)));
+        var fila = filaRestauranteRepository.findAllByPedidoStatusIn(new LinkedList<>(Arrays.asList(StatusPedido.RECEBIDO, StatusPedido.EM_PREPARACAO, StatusPedido.PRONTO)));
 
         return fila.stream()
                 .map(FilaRestauranteModel::getPedido)
+                .map(pedidoMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Pedido> buscarFilaCliente() {
+        var statusArray = new StatusPedido[]{StatusPedido.EM_PREPARACAO, StatusPedido.PRONTO};
+        var fila = filaClienteRepositoryJpa.findAllByPedidoStatusIn(new LinkedList<>(Arrays.asList(statusArray)));
+
+        return fila.stream()
+                .map(FilaClienteModel::getPedido)
                 .map(pedidoMapper::toDomain)
                 .toList();
     }

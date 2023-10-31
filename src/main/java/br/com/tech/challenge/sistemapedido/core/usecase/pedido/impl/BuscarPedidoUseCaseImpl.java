@@ -31,4 +31,9 @@ public class BuscarPedidoUseCaseImpl implements BuscarPedidoUseCase {
     public List<Pedido> buscarFilaRestaurante() {
         return repository.buscarFilaRestaurante();
     }
+
+    @Override
+    public List<Pedido> buscarFilaCliente() {
+        return repository.buscarFilaCliente();
+    }
 }
