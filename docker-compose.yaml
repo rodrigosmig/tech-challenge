@@ -16,13 +16,13 @@ services:
       SERVICE_NAME: mysql
     networks:
       - sistema-pedidos-network
-  sistemapedidos-app:
+  sistema-pedidos-app:
     build: .
     container_name: sistema-pedidos-app
     ports:
       - "8080:8080"
     depends_on:
-      - meudinherim-mysql
+      - sistema-pedidos-mysql
     networks:
       - sistema-pedidos-network
 
