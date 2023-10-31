@@ -76,7 +76,17 @@ public class Pedido {
         this.pago = Boolean.TRUE;
     }
 
+    public void preparar() {
+        this.status = StatusPedido.EM_PREPARACAO;
+    }
 
+    public void pronto() {
+        this.status = StatusPedido.PRONTO;
+    }
+
+    public void finalizado() {
+        this.status = StatusPedido.FINALIZADO;
+    }
 
     public static class PedidoBuilder {
         private Long id;

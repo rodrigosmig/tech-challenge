@@ -1,5 +1,6 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.event.publisher;
 
+import br.com.tech.challenge.sistemapedido.core.domain.event.AlteracaoStatusPedidoEvent;
 import br.com.tech.challenge.sistemapedido.core.domain.event.PedidoPagoEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -11,6 +12,10 @@ public class PedidoPublisher {
     private final ApplicationEventPublisher eventPublisher;
 
     public void publishPedidoPagoEvent(PedidoPagoEvent event) {
+        eventPublisher.publishEvent(event);
+    }
+
+    public void publishAteracaoStatusPedidoEvent(AlteracaoStatusPedidoEvent event) {
         eventPublisher.publishEvent(event);
     }
 }

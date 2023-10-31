@@ -3,6 +3,7 @@ package br.com.tech.challenge.sistemapedido.infrastructure.repository;
 import br.com.tech.challenge.sistemapedido.core.domain.ItemPedido;
 import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
+import br.com.tech.challenge.sistemapedido.core.domain.event.AlteracaoStatusPedidoEvent;
 import br.com.tech.challenge.sistemapedido.core.domain.event.PedidoPagoEvent;
 import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
 import br.com.tech.challenge.sistemapedido.infrastructure.event.publisher.PedidoPublisher;
@@ -67,19 +68,21 @@ public class PedidoRepositoryImpl implements PedidoRepository {
     public void pagar(Pedido pedido) {
         pedido.pagar();
 
-        var pedidoModel = pedidoRepository.save(pedidoMapper.toModel(pedido));
+        pedidoRepository.save(pedidoMapper.toModel(pedido));
 
         pedidoPublisher.publishPedidoPagoEvent(new PedidoPagoEvent(pedido));
     }
 
     @Override
-    public void alterarStatus() {
+    public void alterarStatus(Pedido pedido) {
+        pedidoRepository.save(pedidoMapper.toModel(pedido));
 
+        pedidoPublisher.publishAteracaoStatusPedidoEvent(new AlteracaoStatusPedidoEvent(pedido));
     }
 
     @Override
     public List<Pedido> buscarFilaRestaurante() {
-        var statusArray = new StatusPedido[]{StatusPedido.RECEBIDO, StatusPedido.FINALIZADO};
+        var statusArray = new StatusPedido[]{StatusPedido.RECEBIDO, StatusPedido.EM_PREPARACAO};
         var fila = filaRestauranteRepository.findAllByPedidoStatusIn(new LinkedList<>(Arrays.asList(statusArray)));
 
         return fila.stream()

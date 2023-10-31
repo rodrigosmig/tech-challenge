@@ -11,6 +11,6 @@ public interface PedidoRepository {
     List<Pedido> buscarTodos();
     Pedido salvar(Pedido pedido, List<ItemPedido> itemPedidos);
     void pagar(Pedido pedido);
-    void alterarStatus();
+    void alterarStatus(Pedido pedido);
     List<Pedido> buscarFilaRestaurante();
 }

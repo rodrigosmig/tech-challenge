@@ -3,6 +3,8 @@ package br.com.tech.challenge.sistemapedido.application.http.controller.v1;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.dto.InputErrorDTO;
 import br.com.tech.challenge.sistemapedido.core.exception.EntityNotFoundException;
 import br.com.tech.challenge.sistemapedido.core.exception.PedidoJaPagoException;
+import br.com.tech.challenge.sistemapedido.core.exception.PedidoNaoPagoException;
+import br.com.tech.challenge.sistemapedido.core.exception.PedidoStatusIncorretoException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +24,8 @@ public class ApplicationExceptionHandler {
         return new ResponseEntity<>(new InputErrorDTO(exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(PedidoJaPagoException.class)
-    public ResponseEntity<InputErrorDTO> pedidoJaPago(PedidoJaPagoException exception) {
+    @ExceptionHandler({PedidoJaPagoException.class, PedidoNaoPagoException.class, PedidoStatusIncorretoException.class})
+    public ResponseEntity<InputErrorDTO> pedidoJaPago(RuntimeException exception) {
         return new ResponseEntity<>(new InputErrorDTO(exception.getMessage()), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }

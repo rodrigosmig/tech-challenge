@@ -5,6 +5,7 @@ import br.com.tech.challenge.sistemapedido.application.http.controller.v1.respon
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.ItemPedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
+import br.com.tech.challenge.sistemapedido.core.usecase.pedido.AlterarStatusPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.core.usecase.pedido.BuscarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.core.usecase.pedido.CriarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.core.usecase.pedido.PagarPedidoUseCase;
@@ -20,6 +21,7 @@ public class PedidoController {
     private final CriarPedidoUseCase criarPedidoUseCase;
     private final BuscarPedidoUseCase buscarPedidoUseCase;
     private final PagarPedidoUseCase pagarPedidoUseCase;
+    private final AlterarStatusPedidoUseCase alterarStatusPedidoUseCase;
 
     private final ItemPedidoDataMapper itemPedidoMapper;
     private final PedidoDataMapper pedidoMapper;
@@ -43,6 +45,27 @@ public class PedidoController {
     @PostMapping("{idPedido}/pagar")
     public ResponseEntity<Void> pagar(@PathVariable Long idPedido) {
         pagarPedidoUseCase.pagar(idPedido);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("preparacao/{idPedido}")
+    public ResponseEntity<Void> preparacao(@PathVariable Long idPedido) {
+        alterarStatusPedidoUseCase.alterarParaEmPreparacao(idPedido);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("pronto/{idPedido}")
+    public ResponseEntity<Void> pronto(@PathVariable Long idPedido) {
+        alterarStatusPedidoUseCase.alterarParaPronto(idPedido);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("finalizado/{idPedido}")
+    public ResponseEntity<Void> finalizado(@PathVariable Long idPedido) {
+        alterarStatusPedidoUseCase.alterarParaFinalizado(idPedido);
 
         return ResponseEntity.noContent().build();
     }
