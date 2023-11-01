@@ -26,10 +26,12 @@ public class AlterarProdutoUseCaseImpl implements AlterarProdutoUseCase {
     }
 
     private Produto atualizarDados(Produto novoProduto, Produto produtoAtual) {
-        return new Produto(produtoAtual.getId(),
-                novoProduto.getNome(),
-                novoProduto.getCategoria(),
-                novoProduto.getDescricao(),
-                novoProduto.getPreco());
+        return Produto.builder()
+                .id(produtoAtual.getId())
+                .nome(novoProduto.getNome())
+                .categoria(novoProduto.getCategoria())
+                .descricao(novoProduto.getDescricao())
+                .preco(novoProduto.getPreco())
+                .build();
     }
 }

@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  meudinherim-mysql:
+  sistema-pedidos-mysql:
     image: mysql:8.0.33
     container_name: sistema-pedidos-db
     restart: unless-stopped
@@ -14,6 +14,18 @@ services:
       MYSQL_PASSWORD: sistema_pedidos
       MYSQL_ROOT_PASSWORD: rootsql
       SERVICE_NAME: mysql
+    networks:
+      - sistema-pedidos-network
+
+  sistema-pedidos-app:
+    build: .
+    container_name: sistema-pedidos-app
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://sistema-pedidos-mysql:3306/sistema_pedidos?autoReconnect=true&useSSL=false
+    depends_on:
+      - sistema-pedidos-mysql
     networks:
       - sistema-pedidos-network
 
