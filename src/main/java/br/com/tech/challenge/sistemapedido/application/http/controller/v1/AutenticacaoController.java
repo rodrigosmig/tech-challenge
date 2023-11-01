@@ -17,22 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("v1/autenticacao")
+@RequestMapping("/api/v1/autenticacao")
 public class AutenticacaoController implements AutenticacaoControllerOpenApi {
     private final UsuarioDataMapper usuarioMapper;
     private final AutenticarUsuarioUseCase autenticarUsuarioUseCase;
     private final RegistrarUsuarioUseCase registrarUsuarioUseCase;
 
-    @PostMapping
+    @PostMapping("/autenticar")
     public ResponseEntity<String> autenticarUsuario(@RequestBody AutenticarUsuarioRequest request) {
-        autenticarUsuarioUseCase.autenticar(request.cpfOuEmail(), request.senha());
+        autenticarUsuarioUseCase.autenticar(request.cpf(), request.senha());
 
         // TODO: Criar responses para Strings
 
         return new ResponseEntity<>("Usuário autenticado com sucesso!.", HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/registrar")
     public ResponseEntity<?> registrarUsuario(@RequestBody RegistrarUsuarioRequest request) {
         var usuario = registrarUsuarioUseCase.registrar(usuarioMapper.toDomain(request));
 

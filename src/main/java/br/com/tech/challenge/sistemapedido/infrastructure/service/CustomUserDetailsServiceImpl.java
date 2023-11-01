@@ -30,7 +30,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
                 .stream()
                 .map((role) -> new SimpleGrantedAuthority(role.getNome())).collect(Collectors.toSet());
 
-        return new org.springframework.security.core.userdetails.User(usuario.getEmail(),
+        return new org.springframework.security.core.userdetails.User(usuario.getCpf(),
                 usuario.getSenha(),
                 authorities);
     }
