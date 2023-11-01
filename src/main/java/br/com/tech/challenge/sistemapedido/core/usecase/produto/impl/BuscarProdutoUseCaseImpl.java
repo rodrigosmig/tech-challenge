@@ -19,7 +19,7 @@ public class BuscarProdutoUseCaseImpl implements BuscarProdutoUseCase {
     @Override
     public Produto buscarPorId(Long id) {
         return repository.buscarPorId(id)
-                .orElseThrow(ProdutoNaoEncontradoException::new);
+                .orElseThrow(() -> new ProdutoNaoEncontradoException(id));
     }
 
     @Override
