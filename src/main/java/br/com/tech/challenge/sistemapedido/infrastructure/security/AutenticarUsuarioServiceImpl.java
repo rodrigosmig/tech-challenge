@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.service;
+package br.com.tech.challenge.sistemapedido.infrastructure.security;
 
 import br.com.tech.challenge.sistemapedido.core.service.AutenticarUsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -12,12 +12,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class AutenticarUsuarioServiceImpl implements AutenticarUsuarioService {
     private final AuthenticationManager authenticationManager;
+    private final JwtTokenProvider jwtTokenProvider;
+
 
     @Override
-    public void autenticar(String cpf, String senha) {
+    public String autenticar(String cpf, String senha) {
+//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//                cpf, senha));
+//
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 cpf, senha));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = jwtTokenProvider.generateToken(authentication);
+
+        return token;
     }
 }

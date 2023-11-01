@@ -24,7 +24,7 @@ public interface AutenticacaoControllerOpenApi {
             )
 
     })
-    ResponseEntity<String> autenticarUsuario(@RequestBody AutenticarUsuarioRequest request);
+    ResponseEntity<?> autenticarUsuario(@RequestBody AutenticarUsuarioRequest request);
 
     @Operation(summary = "Registrar um novo usuário")
     @ApiResponses(value = {

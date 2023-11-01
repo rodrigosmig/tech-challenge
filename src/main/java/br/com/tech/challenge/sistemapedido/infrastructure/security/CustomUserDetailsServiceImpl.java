@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.service;
+package br.com.tech.challenge.sistemapedido.infrastructure.security;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
 import br.com.tech.challenge.sistemapedido.core.repository.UsuarioRepository;

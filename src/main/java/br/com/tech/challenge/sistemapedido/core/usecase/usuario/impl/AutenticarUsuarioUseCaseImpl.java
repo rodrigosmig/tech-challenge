@@ -14,7 +14,7 @@ public class AutenticarUsuarioUseCaseImpl implements AutenticarUsuarioUseCase {
 
 
     @Override
-    public void autenticar(String cpf, String senha) {
-        service.autenticar(cpf, senha);
+    public String autenticar(String cpf, String senha) {
+        return service.autenticar(cpf, senha);
     }
 }

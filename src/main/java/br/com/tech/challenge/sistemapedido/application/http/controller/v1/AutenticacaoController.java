@@ -3,6 +3,7 @@ package br.com.tech.challenge.sistemapedido.application.http.controller.v1;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.openapi.AutenticacaoControllerOpenApi;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.AutenticarUsuarioRequest;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.RegistrarUsuarioRequest;
+import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.AutenticarUsuarioResponse;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.RegistrarUsuarioResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.UsuarioDataMapper;
 import br.com.tech.challenge.sistemapedido.core.usecase.usuario.AutenticarUsuarioUseCase;
@@ -24,12 +25,12 @@ public class AutenticacaoController implements AutenticacaoControllerOpenApi {
     private final RegistrarUsuarioUseCase registrarUsuarioUseCase;
 
     @PostMapping("/autenticar")
-    public ResponseEntity<String> autenticarUsuario(@RequestBody AutenticarUsuarioRequest request) {
-        autenticarUsuarioUseCase.autenticar(request.cpf(), request.senha());
+    public ResponseEntity<?> autenticarUsuario(@RequestBody AutenticarUsuarioRequest request) {
+        String token = autenticarUsuarioUseCase.autenticar(request.cpf(), request.senha());
 
-        // TODO: Criar responses para Strings
+        AutenticarUsuarioResponse autenticarUsuarioResponse = new AutenticarUsuarioResponse(token);
 
-        return new ResponseEntity<>("Usuário autenticado com sucesso!.", HttpStatus.OK);
+        return new ResponseEntity<>(autenticarUsuarioResponse, HttpStatus.OK);
     }
 
     @PostMapping("/registrar")
