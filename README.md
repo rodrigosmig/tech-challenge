@@ -16,13 +16,13 @@ Certifique-se de ter instalado em sua máquina:
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/nome-do-repositorio.git
+    git clone https://github.com/rodrigosmig/tech-challenge.git
     ```
 
 2. Navegue até o diretório do projeto:
 
     ```bash
-    cd nome-do-repositorio
+    cd tech-challenge
     ```
 
 3. Execute o comando Maven para construir o arquivo JAR:
@@ -43,8 +43,3 @@ Certifique-se de ter instalado em sua máquina:
 
 Isso irá construir a imagem para execução da aplicação e iniciará os serviços conforme configurado
 no `docker-compose.yml`.
-
-## Observações
-
-Certifique-se de que as configurações e nomes de arquivos estejam de acordo com o seu projeto. Estes são exemplos
-genéricos e podem variar dependendo da estrutura do seu projeto e de suas necessidades específicas.
