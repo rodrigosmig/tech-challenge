@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("v1/pedidos/fila")
+@RequestMapping("/api/v1/pedidos/fila")
 public class FilaController {
     private final BuscarPedidoUseCase buscarPedidoUseCase;
     private final PedidoDataMapper pedidoMapper;

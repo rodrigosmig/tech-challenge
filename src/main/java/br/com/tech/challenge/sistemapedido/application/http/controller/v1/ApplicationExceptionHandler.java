@@ -8,6 +8,7 @@ import br.com.tech.challenge.sistemapedido.core.exception.PedidoStatusIncorretoE
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -27,5 +28,10 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler({PedidoJaPagoException.class, PedidoNaoPagoException.class, PedidoStatusIncorretoException.class})
     public ResponseEntity<InputErrorDTO> pedidoJaPago(RuntimeException exception) {
         return new ResponseEntity<>(new InputErrorDTO(exception.getMessage()), HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<InputErrorDTO> constraintViolation(UsernameNotFoundException exception) {
+        return new ResponseEntity<>(new InputErrorDTO(exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 }

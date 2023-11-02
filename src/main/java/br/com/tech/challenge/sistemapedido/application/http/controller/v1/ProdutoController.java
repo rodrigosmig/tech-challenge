@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("v1/produtos")
+@RequestMapping("/api/v1/produtos")
 public class ProdutoController implements ProdutoControllerOpenApi {
     private final BuscarProdutoUseCase buscarProdutoUseCase;
     private final CadastrarProdutoUseCase cadastrarProdutoUseCase;
