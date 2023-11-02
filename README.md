@@ -43,3 +43,17 @@ Certifique-se de ter instalado em sua máquina:
 
 Isso irá construir a imagem para execução da aplicação e iniciará os serviços conforme configurado
 no `docker-compose.yml`.
+
+## Open API and Swagger UI
+
+1. É possível importar a coleção de API's para o postman utilizando a URL:
+
+```bash
+http://localhost:8081/v3/api-docs
+```
+
+2. É possível também utilizar a inteface gráfica do Swagger utilizando a URL:
+
+```bash
+http://localhost:8081/swagger-ui/index.html
+```
