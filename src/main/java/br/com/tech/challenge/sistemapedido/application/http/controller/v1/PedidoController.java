@@ -5,10 +5,10 @@ import br.com.tech.challenge.sistemapedido.application.http.controller.v1.respon
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.ItemPedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.AlterarStatusPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.BuscarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.CriarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.PagarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

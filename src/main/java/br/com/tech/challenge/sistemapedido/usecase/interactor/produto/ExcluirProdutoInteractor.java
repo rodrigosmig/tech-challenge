@@ -1,16 +1,16 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.produto.impl;
+package br.com.tech.challenge.sistemapedido.usecase.interactor.produto;
 
 import br.com.tech.challenge.sistemapedido.core.repository.ProdutoRepository;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.BuscarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.ExcluirProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.ExcluirProdutoUseCase;
 import jakarta.inject.Named;
 
 @Named
-public class ExcluirProdutoUseCaseImpl implements ExcluirProdutoUseCase {
+public class ExcluirProdutoInteractor implements ExcluirProdutoUseCase {
     private final ProdutoRepository repository;
     private final BuscarProdutoUseCase buscarProdutoUseCase;
 
-    public ExcluirProdutoUseCaseImpl(ProdutoRepository repository, BuscarProdutoUseCase buscarProdutoUseCase) {
+    public ExcluirProdutoInteractor(ProdutoRepository repository, BuscarProdutoUseCase buscarProdutoUseCase) {
         this.repository = repository;
         this.buscarProdutoUseCase = buscarProdutoUseCase;
     }

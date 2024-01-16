@@ -6,8 +6,8 @@ import br.com.tech.challenge.sistemapedido.application.http.controller.v1.reques
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.AutenticarUsuarioResponse;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.RegistrarUsuarioResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.UsuarioDataMapper;
-import br.com.tech.challenge.sistemapedido.core.usecase.usuario.AutenticarUsuarioUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.usuario.RegistrarUsuarioUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.AutenticarUsuarioUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.RegistrarUsuarioUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

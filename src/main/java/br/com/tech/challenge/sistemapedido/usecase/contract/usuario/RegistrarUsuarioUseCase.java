@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.usuario;
+package br.com.tech.challenge.sistemapedido.usecase.contract.usuario;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
 

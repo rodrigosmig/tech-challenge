@@ -1,15 +1,15 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.usuario.impl;
+package br.com.tech.challenge.sistemapedido.usecase.interactor.usuario;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
 import br.com.tech.challenge.sistemapedido.core.service.AutenticarUsuarioService;
-import br.com.tech.challenge.sistemapedido.core.usecase.usuario.RegistrarUsuarioUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.RegistrarUsuarioUseCase;
 import jakarta.inject.Named;
 
 @Named
-public class RegistrarUsuarioUseCaseImpl implements RegistrarUsuarioUseCase {
+public class RegistrarUsuarioInteractor implements RegistrarUsuarioUseCase {
     private final AutenticarUsuarioService service;
 
-    public RegistrarUsuarioUseCaseImpl(AutenticarUsuarioService service) {
+    public RegistrarUsuarioInteractor(AutenticarUsuarioService service) {
         this.service = service;
     }
 

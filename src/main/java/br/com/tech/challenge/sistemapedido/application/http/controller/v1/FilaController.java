@@ -2,7 +2,7 @@ package br.com.tech.challenge.sistemapedido.application.http.controller.v1;
 
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.BuscarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

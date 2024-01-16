@@ -1,20 +1,19 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.pedido.impl;
+package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.core.exception.PedidoNaoPagoException;
 import br.com.tech.challenge.sistemapedido.core.exception.PedidoStatusIncorretoException;
 import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.AlterarStatusPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.BuscarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import jakarta.inject.Named;
 
 @Named
-public class AlterarStatusPedidoUseCaseImpl implements AlterarStatusPedidoUseCase {
+public class AlterarStatusPedidoInteractor implements AlterarStatusPedidoUseCase {
     private final PedidoRepository pedidoRepository;
     private final BuscarPedidoUseCase buscarPedidoUseCase;
 
-    public AlterarStatusPedidoUseCaseImpl(PedidoRepository pedidoRepository, BuscarPedidoUseCase buscarPedidoUseCase) {
+    public AlterarStatusPedidoInteractor(PedidoRepository pedidoRepository, BuscarPedidoUseCase buscarPedidoUseCase) {
         this.pedidoRepository = pedidoRepository;
         this.buscarPedidoUseCase = buscarPedidoUseCase;
     }

@@ -1,17 +1,17 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.pedido.impl;
+package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
 
 import br.com.tech.challenge.sistemapedido.core.exception.PedidoJaPagoException;
 import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.BuscarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.PagarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUseCase;
 import jakarta.inject.Named;
 
 @Named
-public class PagarPedidoUseCaseImpl implements PagarPedidoUseCase {
+public class PagarPedidoInteractor implements PagarPedidoUseCase {
     private final BuscarPedidoUseCase buscarPedidoUseCase;
     private final PedidoRepository pedidoRepository;
 
-    public PagarPedidoUseCaseImpl(BuscarPedidoUseCase buscarPedidoUseCase, PedidoRepository pedidoRepository) {
+    public PagarPedidoInteractor(BuscarPedidoUseCase buscarPedidoUseCase, PedidoRepository pedidoRepository) {
         this.buscarPedidoUseCase = buscarPedidoUseCase;
         this.pedidoRepository = pedidoRepository;
     }

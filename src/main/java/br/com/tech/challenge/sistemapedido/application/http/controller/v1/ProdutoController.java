@@ -6,10 +6,10 @@ import br.com.tech.challenge.sistemapedido.application.http.controller.v1.respon
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarProdutosResponse;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ProdutoResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.ProdutoDataMapper;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.AlterarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.BuscarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.CadastrarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.ExcluirProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.AlterarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.CadastrarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.ExcluirProdutoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

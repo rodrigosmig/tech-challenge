@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.pedido.impl;
+package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
 
 import br.com.tech.challenge.sistemapedido.core.domain.ItemPedido;
 import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
@@ -6,8 +6,8 @@ import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.core.domain.vo.Data;
 import br.com.tech.challenge.sistemapedido.core.domain.vo.Preco;
 import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
-import br.com.tech.challenge.sistemapedido.core.usecase.pedido.CriarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.BuscarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ItemPedidoModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.ItemPedidoRepositoryJpa;
 import jakarta.inject.Inject;
@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Named
-public class CriarPedidoUseCaseImpl implements CriarPedidoUseCase {
+public class CriarPedidoInteractor implements CriarPedidoUseCase {
     private final BuscarProdutoUseCase buscarProdutoUseCase;
     @Inject
     private ItemPedidoRepositoryJpa itemRepository;
@@ -28,7 +28,7 @@ public class CriarPedidoUseCaseImpl implements CriarPedidoUseCase {
     private ItemPedidoModelMapper itemPedidoMapper;
     private final PedidoRepository pedidoRepository;
 
-    public CriarPedidoUseCaseImpl(BuscarProdutoUseCase buscarProdutoUseCase, PedidoRepository pedidoRepository) {
+    public CriarPedidoInteractor(BuscarProdutoUseCase buscarProdutoUseCase, PedidoRepository pedidoRepository) {
         this.buscarProdutoUseCase = buscarProdutoUseCase;
         this.pedidoRepository = pedidoRepository;
     }

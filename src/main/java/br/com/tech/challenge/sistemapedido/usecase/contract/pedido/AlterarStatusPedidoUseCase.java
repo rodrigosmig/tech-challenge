@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.pedido;
+package br.com.tech.challenge.sistemapedido.usecase.contract.pedido;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
 

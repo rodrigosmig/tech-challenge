@@ -1,15 +1,15 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.produto.impl;
+package br.com.tech.challenge.sistemapedido.usecase.interactor.produto;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Produto;
 import br.com.tech.challenge.sistemapedido.core.repository.ProdutoRepository;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.CadastrarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.CadastrarProdutoUseCase;
 import jakarta.inject.Named;
 
 @Named
-public class CadastrarProdutoUseCaseImpl implements CadastrarProdutoUseCase {
+public class CadastrarProdutoInteractor implements CadastrarProdutoUseCase {
     private final ProdutoRepository repository;
 
-    public CadastrarProdutoUseCaseImpl(ProdutoRepository repository) {
+    public CadastrarProdutoInteractor(ProdutoRepository repository) {
         this.repository = repository;
     }
 

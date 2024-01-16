@@ -1,18 +1,18 @@
-package br.com.tech.challenge.sistemapedido.core.usecase.produto.impl;
+package br.com.tech.challenge.sistemapedido.usecase.interactor.produto;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Produto;
 import br.com.tech.challenge.sistemapedido.core.exception.ProdutoNaoEncontradoException;
 import br.com.tech.challenge.sistemapedido.core.repository.ProdutoRepository;
-import br.com.tech.challenge.sistemapedido.core.usecase.produto.BuscarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import jakarta.inject.Named;
 
 import java.util.List;
 
 @Named
-public class BuscarProdutoUseCaseImpl implements BuscarProdutoUseCase {
+public class BuscarProdutoInteractor implements BuscarProdutoUseCase {
     private final ProdutoRepository repository;
 
-    public BuscarProdutoUseCaseImpl(ProdutoRepository repository) {
+    public BuscarProdutoInteractor(ProdutoRepository repository) {
         this.repository = repository;
     }
 
