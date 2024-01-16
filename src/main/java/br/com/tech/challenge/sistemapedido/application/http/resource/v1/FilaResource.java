@@ -1,6 +1,6 @@
-package br.com.tech.challenge.sistemapedido.application.http.controller.v1;
+package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
 
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarPedidosResponse;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/pedidos/fila")
-public class FilaController {
+public class FilaResource {
     private final BuscarPedidoUseCase buscarPedidoUseCase;
     private final PedidoDataMapper pedidoMapper;
 

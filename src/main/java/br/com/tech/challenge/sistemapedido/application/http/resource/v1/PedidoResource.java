@@ -1,8 +1,8 @@
-package br.com.tech.challenge.sistemapedido.application.http.controller.v1;
+package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
 
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.PedidoRequest;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.CadastrarPedidoResponse;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarPedidosResponse;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.PedidoRequest;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.CadastrarPedidoResponse;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.ItemPedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/pedidos")
-public class PedidoController {
+public class PedidoResource {
     private final CriarPedidoUseCase criarPedidoUseCase;
     private final BuscarPedidoUseCase buscarPedidoUseCase;
     private final PagarPedidoUseCase pagarPedidoUseCase;

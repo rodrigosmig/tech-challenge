@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.application.http.controller.v1.request;
+package br.com.tech.challenge.sistemapedido.application.http.resource.v1.request;
 
 import br.com.tech.challenge.sistemapedido.domain.Papel;
 

@@ -1,6 +1,6 @@
-package br.com.tech.challenge.sistemapedido.application.http.controller.v1.response;
+package br.com.tech.challenge.sistemapedido.application.http.resource.v1.response;
 
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.dto.ProdutoDTO;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto.ProdutoDTO;
 import lombok.Getter;
 
 import java.util.List;

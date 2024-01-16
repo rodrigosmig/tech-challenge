@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.application.http.controller.v1.response;
+package br.com.tech.challenge.sistemapedido.application.http.resource.v1.response;
 
 import lombok.Getter;
 

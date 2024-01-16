@@ -1,10 +1,10 @@
-package br.com.tech.challenge.sistemapedido.application.http.controller.v1.openapi;
+package br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi;
 
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.dto.InputErrorDTO;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.ProdutoRequest;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.CadastrarProdutoResponse;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ListarProdutosResponse;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.response.ProdutoResponse;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto.InputErrorDTO;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.ProdutoRequest;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.CadastrarProdutoResponse;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ListarProdutosResponse;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ProdutoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;

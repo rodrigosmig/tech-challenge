@@ -1,8 +1,8 @@
-package br.com.tech.challenge.sistemapedido.application.http.controller.v1.openapi;
+package br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi;
 
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.dto.InputErrorDTO;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.AutenticarUsuarioRequest;
-import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.RegistrarUsuarioRequest;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto.InputErrorDTO;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.AutenticarUsuarioRequest;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.RegistrarUsuarioRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
