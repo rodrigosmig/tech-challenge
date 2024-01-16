@@ -1,10 +1,10 @@
 package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.PedidoRequest;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.CadastrarPedidoResponse;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ListarPedidosResponse;
-import br.com.tech.challenge.sistemapedido.application.http.mapper.ItemPedidoDataMapper;
-import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
+import br.com.tech.challenge.sistemapedido.application.request.PedidoRequest;
+import br.com.tech.challenge.sistemapedido.application.response.CadastrarPedidoResponse;
+import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
+import br.com.tech.challenge.sistemapedido.application.mapper.ItemPedidoDataMapper;
+import br.com.tech.challenge.sistemapedido.application.mapper.PedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;

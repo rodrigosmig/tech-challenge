@@ -1,15 +1,11 @@
 package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi.ProdutoControllerOpenApi;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.ProdutoRequest;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.CadastrarProdutoResponse;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ListarProdutosResponse;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ProdutoResponse;
-import br.com.tech.challenge.sistemapedido.application.http.mapper.ProdutoDataMapper;
-import br.com.tech.challenge.sistemapedido.usecase.contract.produto.AlterarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.contract.produto.CadastrarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.contract.produto.ExcluirProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.application.controller.ProdutoController;
+import br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi.ProdutoResourceOpenApi;
+import br.com.tech.challenge.sistemapedido.application.request.ProdutoRequest;
+import br.com.tech.challenge.sistemapedido.application.response.CadastrarProdutoResponse;
+import br.com.tech.challenge.sistemapedido.application.response.ListarProdutosResponse;
+import br.com.tech.challenge.sistemapedido.application.response.ProdutoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,51 +14,40 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/produtos")
-public class ProdutoResource implements ProdutoControllerOpenApi {
-    private final BuscarProdutoUseCase buscarProdutoUseCase;
-    private final CadastrarProdutoUseCase cadastrarProdutoUseCase;
-    private final AlterarProdutoUseCase alterarProdutoUseCase;
-    private final ExcluirProdutoUseCase excluirProdutoUseCase;
-    private final ProdutoDataMapper produtoMapper;
+public class ProdutoResource implements ProdutoResourceOpenApi {
+    private final ProdutoController controller;
 
     @GetMapping
     public ResponseEntity<ListarProdutosResponse> listar() {
-        var produtos = buscarProdutoUseCase.buscarTodos();
-        var resposta = new ListarProdutosResponse(produtoMapper.toList(produtos));
+        var resposta = controller.listar();
 
         return ResponseEntity.ok(resposta);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<ProdutoResponse> buscar(@PathVariable Long id) {
-        var produto = buscarProdutoUseCase.buscarPorId(id);
-
-        var resposta = new ProdutoResponse(produtoMapper.toDTO(produto));
+        var resposta = controller.buscar(id);
 
         return ResponseEntity.ok(resposta);
     }
 
     @PostMapping
     public ResponseEntity<CadastrarProdutoResponse> criar(@RequestBody ProdutoRequest request) {
-        var produto = cadastrarProdutoUseCase.cadastrar(produtoMapper.toDomain(request));
-
-        var resposta = new CadastrarProdutoResponse(produto.getId());
+        var resposta = controller.criar(request);
 
         return new ResponseEntity<>(resposta, HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<ProdutoResponse> alterar(@PathVariable Long id, @RequestBody ProdutoRequest request) {
-        var produto = alterarProdutoUseCase.alterar(id, produtoMapper.toDomain(request));
-
-        var resposta = new ProdutoResponse(produtoMapper.toDTO(produto));
+        var resposta = controller.alterar(id, request);
 
         return ResponseEntity.ok(resposta);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> excluir(@PathVariable Long id) {
-        excluirProdutoUseCase.excluir(id);
+        controller.excluir(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

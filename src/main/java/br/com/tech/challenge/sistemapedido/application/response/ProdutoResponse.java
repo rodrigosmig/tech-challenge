@@ -1,6 +1,6 @@
-package br.com.tech.challenge.sistemapedido.application.http.resource.v1.response;
+package br.com.tech.challenge.sistemapedido.application.response;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto.ProdutoDTO;
+import br.com.tech.challenge.sistemapedido.application.dto.ProdutoDTO;
 import lombok.Getter;
 
 @Getter

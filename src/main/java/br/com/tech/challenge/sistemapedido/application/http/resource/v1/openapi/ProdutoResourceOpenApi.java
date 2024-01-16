@@ -1,10 +1,10 @@
 package br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto.InputErrorDTO;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.ProdutoRequest;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.CadastrarProdutoResponse;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ListarProdutosResponse;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ProdutoResponse;
+import br.com.tech.challenge.sistemapedido.application.dto.InputErrorDTO;
+import br.com.tech.challenge.sistemapedido.application.request.ProdutoRequest;
+import br.com.tech.challenge.sistemapedido.application.response.CadastrarProdutoResponse;
+import br.com.tech.challenge.sistemapedido.application.response.ListarProdutosResponse;
+import br.com.tech.challenge.sistemapedido.application.response.ProdutoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Tag(name = "Produtos", description = "Gerencia os produtos")
-public interface ProdutoControllerOpenApi {
+public interface ProdutoResourceOpenApi {
     @Operation(summary = "Lista os produtos")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200")

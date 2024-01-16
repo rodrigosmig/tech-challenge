@@ -1,11 +1,11 @@
 package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
 
 import br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi.AutenticacaoControllerOpenApi;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.AutenticarUsuarioRequest;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.RegistrarUsuarioRequest;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.AutenticarUsuarioResponse;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.RegistrarUsuarioResponse;
-import br.com.tech.challenge.sistemapedido.application.http.mapper.UsuarioDataMapper;
+import br.com.tech.challenge.sistemapedido.application.request.AutenticarUsuarioRequest;
+import br.com.tech.challenge.sistemapedido.application.request.RegistrarUsuarioRequest;
+import br.com.tech.challenge.sistemapedido.application.response.AutenticarUsuarioResponse;
+import br.com.tech.challenge.sistemapedido.application.response.RegistrarUsuarioResponse;
+import br.com.tech.challenge.sistemapedido.application.mapper.UsuarioDataMapper;
 import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.AutenticarUsuarioUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.RegistrarUsuarioUseCase;
 import lombok.RequiredArgsConstructor;

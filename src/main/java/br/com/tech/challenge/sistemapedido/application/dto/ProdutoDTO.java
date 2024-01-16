@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto;
+package br.com.tech.challenge.sistemapedido.application.dto;
 
 import br.com.tech.challenge.sistemapedido.domain.Categoria;
 

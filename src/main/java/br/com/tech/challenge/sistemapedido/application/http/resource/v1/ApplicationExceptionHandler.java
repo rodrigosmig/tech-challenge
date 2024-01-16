@@ -1,6 +1,6 @@
 package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto.InputErrorDTO;
+import br.com.tech.challenge.sistemapedido.application.dto.InputErrorDTO;
 import br.com.tech.challenge.sistemapedido.domain.exception.EntityNotFoundException;
 import br.com.tech.challenge.sistemapedido.domain.exception.PedidoJaPagoException;
 import br.com.tech.challenge.sistemapedido.domain.exception.PedidoNaoPagoException;

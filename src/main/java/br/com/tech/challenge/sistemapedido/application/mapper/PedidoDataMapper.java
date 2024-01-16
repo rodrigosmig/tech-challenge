@@ -1,6 +1,6 @@
-package br.com.tech.challenge.sistemapedido.application.http.mapper;
+package br.com.tech.challenge.sistemapedido.application.mapper;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto.PedidoDTO;
+import br.com.tech.challenge.sistemapedido.application.dto.PedidoDTO;
 import br.com.tech.challenge.sistemapedido.domain.Pedido;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;

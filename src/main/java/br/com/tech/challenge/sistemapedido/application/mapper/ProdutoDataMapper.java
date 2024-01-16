@@ -1,7 +1,7 @@
-package br.com.tech.challenge.sistemapedido.application.http.mapper;
+package br.com.tech.challenge.sistemapedido.application.mapper;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.dto.ProdutoDTO;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.request.ProdutoRequest;
+import br.com.tech.challenge.sistemapedido.application.dto.ProdutoDTO;
+import br.com.tech.challenge.sistemapedido.application.request.ProdutoRequest;
 import br.com.tech.challenge.sistemapedido.domain.Categoria;
 import br.com.tech.challenge.sistemapedido.domain.Produto;
 import br.com.tech.challenge.sistemapedido.domain.vo.Descricao;

@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.response.ListarPedidosResponse;
-import br.com.tech.challenge.sistemapedido.application.http.mapper.PedidoDataMapper;
+import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
+import br.com.tech.challenge.sistemapedido.application.mapper.PedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
