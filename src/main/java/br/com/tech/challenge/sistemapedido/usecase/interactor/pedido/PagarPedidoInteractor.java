@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
 
-import br.com.tech.challenge.sistemapedido.core.exception.PedidoJaPagoException;
-import br.com.tech.challenge.sistemapedido.usecase.repository.PedidoGateway;
+import br.com.tech.challenge.sistemapedido.domain.exception.PedidoJaPagoException;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUseCase;
 import jakarta.inject.Named;

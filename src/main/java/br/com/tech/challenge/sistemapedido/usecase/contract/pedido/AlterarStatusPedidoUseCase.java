@@ -1,7 +1,5 @@
 package br.com.tech.challenge.sistemapedido.usecase.contract.pedido;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
-
 public interface AlterarStatusPedidoUseCase {
     void alterarParaEmPreparacao(Long idPedido);
     void alterarParaPronto(Long idPedido);

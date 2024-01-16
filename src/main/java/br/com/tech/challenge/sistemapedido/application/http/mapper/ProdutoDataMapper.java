@@ -2,11 +2,11 @@ package br.com.tech.challenge.sistemapedido.application.http.mapper;
 
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.dto.ProdutoDTO;
 import br.com.tech.challenge.sistemapedido.application.http.controller.v1.request.ProdutoRequest;
-import br.com.tech.challenge.sistemapedido.core.domain.Categoria;
-import br.com.tech.challenge.sistemapedido.core.domain.Produto;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Descricao;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Nome;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Preco;
+import br.com.tech.challenge.sistemapedido.domain.Categoria;
+import br.com.tech.challenge.sistemapedido.domain.Produto;
+import br.com.tech.challenge.sistemapedido.domain.vo.Descricao;
+import br.com.tech.challenge.sistemapedido.domain.vo.Nome;
+import br.com.tech.challenge.sistemapedido.domain.vo.Preco;
 import jakarta.inject.Named;
 
 import java.util.List;

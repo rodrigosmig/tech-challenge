@@ -1,6 +1,6 @@
 package br.com.tech.challenge.sistemapedido.application.http.controller.v1.dto;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Papel;
+import br.com.tech.challenge.sistemapedido.domain.Papel;
 
 import java.util.Set;
 

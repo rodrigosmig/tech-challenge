@@ -1,6 +1,6 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.mapper;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
+import br.com.tech.challenge.sistemapedido.domain.Usuario;
 import br.com.tech.challenge.sistemapedido.infrastructure.model.UsuarioModel;
 import org.springframework.stereotype.Component;
 

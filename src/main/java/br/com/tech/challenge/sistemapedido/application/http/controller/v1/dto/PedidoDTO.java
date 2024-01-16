@@ -1,6 +1,6 @@
 package br.com.tech.challenge.sistemapedido.application.http.controller.v1.dto;
 
-import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
+import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

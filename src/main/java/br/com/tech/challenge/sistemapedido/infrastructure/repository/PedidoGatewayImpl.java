@@ -1,11 +1,11 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.repository;
 
-import br.com.tech.challenge.sistemapedido.core.domain.ItemPedido;
-import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
-import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
-import br.com.tech.challenge.sistemapedido.core.domain.event.AlteracaoStatusPedidoEvent;
-import br.com.tech.challenge.sistemapedido.core.domain.event.PedidoPagoEvent;
-import br.com.tech.challenge.sistemapedido.usecase.repository.PedidoGateway;
+import br.com.tech.challenge.sistemapedido.domain.ItemPedido;
+import br.com.tech.challenge.sistemapedido.domain.Pedido;
+import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
+import br.com.tech.challenge.sistemapedido.domain.event.AlteracaoStatusPedidoEvent;
+import br.com.tech.challenge.sistemapedido.domain.event.PedidoPagoEvent;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.event.publisher.PedidoPublisher;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ItemPedidoModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PedidoModelMapper;

@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.usecase.interactor.usuario;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
-import br.com.tech.challenge.sistemapedido.core.service.AutenticarUsuarioService;
+import br.com.tech.challenge.sistemapedido.domain.Usuario;
+import br.com.tech.challenge.sistemapedido.domain.service.AutenticarUsuarioService;
 import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.RegistrarUsuarioUseCase;
 import jakarta.inject.Named;
 

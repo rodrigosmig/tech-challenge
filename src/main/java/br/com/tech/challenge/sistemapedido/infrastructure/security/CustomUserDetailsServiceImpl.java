@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.security;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
-import br.com.tech.challenge.sistemapedido.usecase.repository.UsuarioGateway;
+import br.com.tech.challenge.sistemapedido.domain.Usuario;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

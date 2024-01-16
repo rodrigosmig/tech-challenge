@@ -1,9 +1,9 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.mapper;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Produto;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Descricao;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Nome;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Preco;
+import br.com.tech.challenge.sistemapedido.domain.Produto;
+import br.com.tech.challenge.sistemapedido.domain.vo.Descricao;
+import br.com.tech.challenge.sistemapedido.domain.vo.Nome;
+import br.com.tech.challenge.sistemapedido.domain.vo.Preco;
 import br.com.tech.challenge.sistemapedido.infrastructure.model.ProdutoModel;
 import org.springframework.stereotype.Component;
 

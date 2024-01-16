@@ -1,11 +1,11 @@
 package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
 
-import br.com.tech.challenge.sistemapedido.core.domain.ItemPedido;
-import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
-import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Data;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Preco;
-import br.com.tech.challenge.sistemapedido.usecase.repository.PedidoGateway;
+import br.com.tech.challenge.sistemapedido.domain.ItemPedido;
+import br.com.tech.challenge.sistemapedido.domain.Pedido;
+import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
+import br.com.tech.challenge.sistemapedido.domain.vo.Data;
+import br.com.tech.challenge.sistemapedido.domain.vo.Preco;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ItemPedidoModelMapper;

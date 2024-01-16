@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.repository;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
-import br.com.tech.challenge.sistemapedido.usecase.repository.UsuarioGateway;
+import br.com.tech.challenge.sistemapedido.domain.Usuario;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.UsuarioModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.UsuarioRepositoryJpa;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.repository;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Papel;
-import br.com.tech.challenge.sistemapedido.usecase.repository.PapelGateway;
+import br.com.tech.challenge.sistemapedido.domain.Papel;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.PapelGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PapelModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.PapelRepositoryJpa;
 import lombok.RequiredArgsConstructor;

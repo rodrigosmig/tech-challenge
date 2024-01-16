@@ -1,9 +1,9 @@
 package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
 
-import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
-import br.com.tech.challenge.sistemapedido.core.exception.PedidoNaoPagoException;
-import br.com.tech.challenge.sistemapedido.core.exception.PedidoStatusIncorretoException;
-import br.com.tech.challenge.sistemapedido.usecase.repository.PedidoGateway;
+import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
+import br.com.tech.challenge.sistemapedido.domain.exception.PedidoNaoPagoException;
+import br.com.tech.challenge.sistemapedido.domain.exception.PedidoStatusIncorretoException;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import jakarta.inject.Named;

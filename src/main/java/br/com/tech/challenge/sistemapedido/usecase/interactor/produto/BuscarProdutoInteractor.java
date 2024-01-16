@@ -1,8 +1,8 @@
 package br.com.tech.challenge.sistemapedido.usecase.interactor.produto;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Produto;
-import br.com.tech.challenge.sistemapedido.core.exception.ProdutoNaoEncontradoException;
-import br.com.tech.challenge.sistemapedido.usecase.repository.ProdutoGateway;
+import br.com.tech.challenge.sistemapedido.domain.Produto;
+import br.com.tech.challenge.sistemapedido.domain.exception.ProdutoNaoEncontradoException;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import jakarta.inject.Named;
 

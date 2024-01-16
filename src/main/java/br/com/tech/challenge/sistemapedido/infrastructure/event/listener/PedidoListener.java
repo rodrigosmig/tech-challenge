@@ -1,8 +1,8 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.event.listener;
 
-import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
-import br.com.tech.challenge.sistemapedido.core.domain.event.AlteracaoStatusPedidoEvent;
-import br.com.tech.challenge.sistemapedido.core.domain.event.PedidoPagoEvent;
+import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
+import br.com.tech.challenge.sistemapedido.domain.event.AlteracaoStatusPedidoEvent;
+import br.com.tech.challenge.sistemapedido.domain.event.PedidoPagoEvent;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PedidoModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.model.FilaClienteModel;

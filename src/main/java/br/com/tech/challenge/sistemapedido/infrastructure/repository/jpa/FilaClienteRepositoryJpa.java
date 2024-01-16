@@ -1,6 +1,6 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa;
 
-import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
+import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.infrastructure.model.FilaClienteModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
