@@ -5,7 +5,7 @@ import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.core.domain.vo.Data;
 import br.com.tech.challenge.sistemapedido.core.domain.vo.Preco;
-import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ItemPedidoModelMapper;
@@ -26,11 +26,11 @@ public class CriarPedidoInteractor implements CriarPedidoUseCase {
     private ItemPedidoRepositoryJpa itemRepository;
     @Inject
     private ItemPedidoModelMapper itemPedidoMapper;
-    private final PedidoRepository pedidoRepository;
+    private final PedidoGateway pedidoGateway;
 
-    public CriarPedidoInteractor(BuscarProdutoUseCase buscarProdutoUseCase, PedidoRepository pedidoRepository) {
+    public CriarPedidoInteractor(BuscarProdutoUseCase buscarProdutoUseCase, PedidoGateway pedidoGateway) {
         this.buscarProdutoUseCase = buscarProdutoUseCase;
-        this.pedidoRepository = pedidoRepository;
+        this.pedidoGateway = pedidoGateway;
     }
 
     @Override
@@ -46,12 +46,12 @@ public class CriarPedidoInteractor implements CriarPedidoUseCase {
                 .itens(novosItens)
                 .build();
 
-        pedido = pedidoRepository.salvar(pedido, novosItens);
+        pedido = pedidoGateway.salvar(pedido, novosItens);
         var itens = this.validarItens(itensPedido, pedido);
         pedido.adicionarItens(itens);
         pedido.calcularTotal();
 
-        return pedidoRepository.salvar(pedido, itens);
+        return pedidoGateway.salvar(pedido, itens);
     }
 
     private List<ItemPedido> validarItens(List<ItemPedido> itens, Pedido pedido) {

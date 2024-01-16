@@ -1,17 +1,17 @@
 package br.com.tech.challenge.sistemapedido.usecase.interactor.produto;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Produto;
-import br.com.tech.challenge.sistemapedido.core.repository.ProdutoRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.ProdutoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.AlterarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import jakarta.inject.Named;
 
 @Named
 public class AlterarProdutoInteractor implements AlterarProdutoUseCase {
-    private final ProdutoRepository repository;
+    private final ProdutoGateway repository;
     private final BuscarProdutoUseCase buscarProdutoUseCase;
 
-    public AlterarProdutoInteractor(ProdutoRepository repository, BuscarProdutoUseCase buscarProdutoUseCase) {
+    public AlterarProdutoInteractor(ProdutoGateway repository, BuscarProdutoUseCase buscarProdutoUseCase) {
         this.repository = repository;
         this.buscarProdutoUseCase = buscarProdutoUseCase;
     }

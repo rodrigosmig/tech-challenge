@@ -1,11 +1,11 @@
-package br.com.tech.challenge.sistemapedido.core.repository;
+package br.com.tech.challenge.sistemapedido.usecase.repository;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Papel;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface PapelRepository {
+public interface PapelGateway {
     Optional<Papel> buscarPorId(Long id);
 
     List<Papel> buscarTodos();

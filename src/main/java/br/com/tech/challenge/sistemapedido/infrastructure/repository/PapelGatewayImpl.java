@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.repository;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Papel;
-import br.com.tech.challenge.sistemapedido.core.repository.PapelRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.PapelGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PapelModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.PapelRepositoryJpa;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class PapelRepositoryImpl implements PapelRepository {
+public class PapelGatewayImpl implements PapelGateway {
     private final PapelRepositoryJpa repository;
     private final PapelModelMapper papelMapper;
 

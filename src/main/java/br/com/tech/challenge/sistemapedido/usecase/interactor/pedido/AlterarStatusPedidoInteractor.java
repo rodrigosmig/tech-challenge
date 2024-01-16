@@ -3,18 +3,18 @@ package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
 import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.core.exception.PedidoNaoPagoException;
 import br.com.tech.challenge.sistemapedido.core.exception.PedidoStatusIncorretoException;
-import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import jakarta.inject.Named;
 
 @Named
 public class AlterarStatusPedidoInteractor implements AlterarStatusPedidoUseCase {
-    private final PedidoRepository pedidoRepository;
+    private final PedidoGateway pedidoGateway;
     private final BuscarPedidoUseCase buscarPedidoUseCase;
 
-    public AlterarStatusPedidoInteractor(PedidoRepository pedidoRepository, BuscarPedidoUseCase buscarPedidoUseCase) {
-        this.pedidoRepository = pedidoRepository;
+    public AlterarStatusPedidoInteractor(PedidoGateway pedidoGateway, BuscarPedidoUseCase buscarPedidoUseCase) {
+        this.pedidoGateway = pedidoGateway;
         this.buscarPedidoUseCase = buscarPedidoUseCase;
     }
 
@@ -32,7 +32,7 @@ public class AlterarStatusPedidoInteractor implements AlterarStatusPedidoUseCase
 
         pedido.preparar();
 
-        pedidoRepository.alterarStatus(pedido);
+        pedidoGateway.alterarStatus(pedido);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class AlterarStatusPedidoInteractor implements AlterarStatusPedidoUseCase
 
         pedido.pronto();
 
-        pedidoRepository.alterarStatus(pedido);
+        pedidoGateway.alterarStatus(pedido);
     }
 
     @Override
@@ -66,6 +66,6 @@ public class AlterarStatusPedidoInteractor implements AlterarStatusPedidoUseCase
 
         pedido.finalizado();
 
-        pedidoRepository.alterarStatus(pedido);
+        pedidoGateway.alterarStatus(pedido);
     }
 }

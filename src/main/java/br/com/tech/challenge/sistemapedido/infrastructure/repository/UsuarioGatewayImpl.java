@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.repository;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
-import br.com.tech.challenge.sistemapedido.core.repository.UsuarioRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.UsuarioGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.UsuarioModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.UsuarioRepositoryJpa;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class UsuarioRepositoryImpl implements UsuarioRepository {
+public class UsuarioGatewayImpl implements UsuarioGateway {
     private final UsuarioRepositoryJpa repository;
     private final UsuarioModelMapper usuarioMapper;
 

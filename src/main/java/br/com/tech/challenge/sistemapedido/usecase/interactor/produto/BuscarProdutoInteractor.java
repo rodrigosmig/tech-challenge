@@ -2,7 +2,7 @@ package br.com.tech.challenge.sistemapedido.usecase.interactor.produto;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Produto;
 import br.com.tech.challenge.sistemapedido.core.exception.ProdutoNaoEncontradoException;
-import br.com.tech.challenge.sistemapedido.core.repository.ProdutoRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.ProdutoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import jakarta.inject.Named;
 
@@ -10,9 +10,9 @@ import java.util.List;
 
 @Named
 public class BuscarProdutoInteractor implements BuscarProdutoUseCase {
-    private final ProdutoRepository repository;
+    private final ProdutoGateway repository;
 
-    public BuscarProdutoInteractor(ProdutoRepository repository) {
+    public BuscarProdutoInteractor(ProdutoGateway repository) {
         this.repository = repository;
     }
 

@@ -5,7 +5,7 @@ import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.core.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.core.domain.event.AlteracaoStatusPedidoEvent;
 import br.com.tech.challenge.sistemapedido.core.domain.event.PedidoPagoEvent;
-import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.event.publisher.PedidoPublisher;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ItemPedidoModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PedidoModelMapper;
@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class PedidoRepositoryImpl implements PedidoRepository {
+public class PedidoGatewayImpl implements PedidoGateway {
     private final PedidoRepositoryJpa pedidoRepository;
     private final ItemPedidoRepositoryJpa itemPedidoRepository;
     private final FilaRestauranteRepositoryJpa filaRestauranteRepository;

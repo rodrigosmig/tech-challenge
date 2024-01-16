@@ -1,11 +1,11 @@
-package br.com.tech.challenge.sistemapedido.core.repository;
+package br.com.tech.challenge.sistemapedido.usecase.repository;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UsuarioRepository {
+public interface UsuarioGateway {
     Optional<Usuario> buscarPorId(Long id);
 
     List<Usuario> buscarTodos();

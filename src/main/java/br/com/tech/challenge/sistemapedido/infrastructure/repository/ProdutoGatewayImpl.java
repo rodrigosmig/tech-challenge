@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.repository;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Produto;
-import br.com.tech.challenge.sistemapedido.core.repository.ProdutoRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.ProdutoGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ProdutoModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.ProdutoRepositoryJpa;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class ProdutoRepositoryImpl implements ProdutoRepository {
+public class ProdutoGatewayImpl implements ProdutoGateway {
     private final ProdutoRepositoryJpa repository;
     private final ProdutoModelMapper produtoMapper;
 

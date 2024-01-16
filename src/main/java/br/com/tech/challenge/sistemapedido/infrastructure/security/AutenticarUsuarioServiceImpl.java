@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.security;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
-import br.com.tech.challenge.sistemapedido.core.repository.UsuarioRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.UsuarioGateway;
 import br.com.tech.challenge.sistemapedido.core.service.AutenticarUsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,7 +17,7 @@ public class AutenticarUsuarioServiceImpl implements AutenticarUsuarioService {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
-    private final UsuarioRepository repository;
+    private final UsuarioGateway usuarioGateway;
 
 
     @Override
@@ -37,6 +37,6 @@ public class AutenticarUsuarioServiceImpl implements AutenticarUsuarioService {
     public Usuario registrar(Usuario usuario) {
         var usuarioComSenhaEncriptada = new Usuario(usuario.getNome(),
                 usuario.getCpf(), usuario.getEmail(), passwordEncoder.encode(usuario.getSenha()), usuario.getPapeis());
-        return repository.salvar(usuarioComSenhaEncriptada);
+        return usuarioGateway.salvar(usuarioComSenhaEncriptada);
     }
 }

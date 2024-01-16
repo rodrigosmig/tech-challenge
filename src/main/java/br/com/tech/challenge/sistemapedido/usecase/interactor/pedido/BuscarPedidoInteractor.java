@@ -2,7 +2,7 @@ package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
 
 import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.core.exception.PedidoNaoEncontradoException;
-import br.com.tech.challenge.sistemapedido.core.repository.PedidoRepository;
+import br.com.tech.challenge.sistemapedido.usecase.repository.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import jakarta.inject.Named;
 
@@ -10,9 +10,9 @@ import java.util.List;
 
 @Named
 public class BuscarPedidoInteractor implements BuscarPedidoUseCase {
-    private final PedidoRepository repository;
+    private final PedidoGateway repository;
 
-    public BuscarPedidoInteractor(PedidoRepository repository) {
+    public BuscarPedidoInteractor(PedidoGateway repository) {
         this.repository = repository;
     }
 
