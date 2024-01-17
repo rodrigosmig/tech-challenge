@@ -1,7 +1,7 @@
-package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
+package br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1;
 
 import br.com.tech.challenge.sistemapedido.application.controller.ProdutoController;
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi.ProdutoResourceOpenApi;
+import br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1.openapi.ProdutoResourceOpenApi;
 import br.com.tech.challenge.sistemapedido.application.request.ProdutoRequest;
 import br.com.tech.challenge.sistemapedido.application.response.CadastrarProdutoResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ListarProdutosResponse;

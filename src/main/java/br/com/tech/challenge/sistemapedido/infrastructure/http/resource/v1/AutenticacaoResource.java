@@ -1,6 +1,6 @@
-package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
+package br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1;
 
-import br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi.AutenticacaoControllerOpenApi;
+import br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1.openapi.AutenticacaoControllerOpenApi;
 import br.com.tech.challenge.sistemapedido.application.request.AutenticarUsuarioRequest;
 import br.com.tech.challenge.sistemapedido.application.request.RegistrarUsuarioRequest;
 import br.com.tech.challenge.sistemapedido.application.response.AutenticarUsuarioResponse;

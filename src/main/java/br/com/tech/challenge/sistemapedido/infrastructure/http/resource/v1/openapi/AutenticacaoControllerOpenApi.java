@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.application.http.resource.v1.openapi;
+package br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1.openapi;
 
 import br.com.tech.challenge.sistemapedido.application.dto.InputErrorDTO;
 import br.com.tech.challenge.sistemapedido.application.request.AutenticarUsuarioRequest;

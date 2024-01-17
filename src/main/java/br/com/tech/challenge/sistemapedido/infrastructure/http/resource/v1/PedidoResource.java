@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.application.http.resource.v1;
+package br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1;
 
 import br.com.tech.challenge.sistemapedido.application.controller.PedidoController;
 import br.com.tech.challenge.sistemapedido.application.request.PedidoRequest;

@@ -5,12 +5,9 @@ import br.com.tech.challenge.sistemapedido.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.domain.vo.Data;
 import br.com.tech.challenge.sistemapedido.domain.vo.Preco;
-import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ItemPedidoModelMapper;
-import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.ItemPedidoRepositoryJpa;
-import jakarta.inject.Inject;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 
@@ -22,10 +19,6 @@ import java.util.List;
 @Named
 public class CriarPedidoInteractor implements CriarPedidoUseCase {
     private final BuscarProdutoUseCase buscarProdutoUseCase;
-    @Inject
-    private ItemPedidoRepositoryJpa itemRepository;
-    @Inject
-    private ItemPedidoModelMapper itemPedidoMapper;
     private final PedidoGateway pedidoGateway;
 
     public CriarPedidoInteractor(BuscarProdutoUseCase buscarProdutoUseCase, PedidoGateway pedidoGateway) {
