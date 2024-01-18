@@ -1,7 +1,6 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.model;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Categoria;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Nome;
+import br.com.tech.challenge.sistemapedido.domain.Categoria;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

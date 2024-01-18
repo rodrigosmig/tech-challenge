@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.security;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Usuario;
-import br.com.tech.challenge.sistemapedido.core.repository.UsuarioRepository;
+import br.com.tech.challenge.sistemapedido.domain.Usuario;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 @Service
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioGateway usuarioGateway;
 
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.buscarPorCpfOuEmail(usernameOrEmail, usernameOrEmail)
+        Usuario usuario = usuarioGateway.buscarPorCpfOuEmail(usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found with username or email: " + usernameOrEmail));
 

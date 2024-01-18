@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.event.publisher;
 
-import br.com.tech.challenge.sistemapedido.core.domain.event.AlteracaoStatusPedidoEvent;
-import br.com.tech.challenge.sistemapedido.core.domain.event.PedidoPagoEvent;
+import br.com.tech.challenge.sistemapedido.domain.event.AlteracaoStatusPedidoEvent;
+import br.com.tech.challenge.sistemapedido.domain.event.PedidoPagoEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;

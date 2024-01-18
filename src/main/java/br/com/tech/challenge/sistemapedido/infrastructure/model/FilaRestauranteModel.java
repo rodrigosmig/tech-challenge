@@ -1,6 +1,5 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.model;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,8 +1,8 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.mapper;
 
-import br.com.tech.challenge.sistemapedido.core.domain.Pedido;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Data;
-import br.com.tech.challenge.sistemapedido.core.domain.vo.Preco;
+import br.com.tech.challenge.sistemapedido.domain.Pedido;
+import br.com.tech.challenge.sistemapedido.domain.vo.Data;
+import br.com.tech.challenge.sistemapedido.domain.vo.Preco;
 import br.com.tech.challenge.sistemapedido.infrastructure.model.PedidoModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

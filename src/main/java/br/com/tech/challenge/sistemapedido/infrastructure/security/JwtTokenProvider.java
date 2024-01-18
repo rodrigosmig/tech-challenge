@@ -1,6 +1,6 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.security;
 
-import br.com.tech.challenge.sistemapedido.core.exception.SistemaPedidosAPIException;
+import br.com.tech.challenge.sistemapedido.domain.exception.SistemaPedidosAPIException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
