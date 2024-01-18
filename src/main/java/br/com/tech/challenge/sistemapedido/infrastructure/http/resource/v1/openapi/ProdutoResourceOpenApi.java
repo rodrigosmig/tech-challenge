@@ -40,7 +40,7 @@ public interface ProdutoResourceOpenApi {
             ),
 
     })
-    ResponseEntity<ProdutoResponse> buscar(@PathVariable Long id);
+    ResponseEntity<ProdutoResponse> buscar(Long id);
 
     @Operation(summary = "Cadastra um produto")
     @ApiResponses(value = {
@@ -50,7 +50,7 @@ public interface ProdutoResourceOpenApi {
             )
 
     })
-    ResponseEntity<CadastrarProdutoResponse> criar(@RequestBody ProdutoRequest request);
+    ResponseEntity<CadastrarProdutoResponse> criar(ProdutoRequest request);
 
     @Operation(summary = "Altera um produto")
     @ApiResponses(value = {
@@ -70,7 +70,7 @@ public interface ProdutoResourceOpenApi {
             )
 
     })
-    ResponseEntity<ProdutoResponse> alterar(@PathVariable Long id, @RequestBody ProdutoRequest request);
+    ResponseEntity<ProdutoResponse> alterar(Long id, ProdutoRequest request);
 
     @Operation(summary = "Deleta um produto")
     @ApiResponses(value = {
@@ -87,5 +87,5 @@ public interface ProdutoResourceOpenApi {
             )
 
     })
-    ResponseEntity<Void> excluir(@PathVariable Long id);
+    ResponseEntity<Void> excluir(Long id);
 }
