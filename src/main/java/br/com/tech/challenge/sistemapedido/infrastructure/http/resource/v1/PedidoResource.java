@@ -4,6 +4,7 @@ import br.com.tech.challenge.sistemapedido.application.controller.PedidoControll
 import br.com.tech.challenge.sistemapedido.application.request.PedidoRequest;
 import br.com.tech.challenge.sistemapedido.application.response.CadastrarPedidoResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
+import br.com.tech.challenge.sistemapedido.application.response.StatusPedidoResponse;
 import br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1.openapi.PedidoResourceOpenApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -62,5 +63,13 @@ public class PedidoResource implements PedidoResourceOpenApi {
         controller.finalizado(idPedido);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    @GetMapping("{idPedido}/status")
+    public ResponseEntity<StatusPedidoResponse> verificarStatus(@PathVariable Long idPedido) {
+        var resposta = controller.verificarStatus(idPedido);
+
+        return ResponseEntity.ok(resposta);
     }
 }

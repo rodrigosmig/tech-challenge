@@ -4,6 +4,7 @@ import br.com.tech.challenge.sistemapedido.application.dto.InputErrorDTO;
 import br.com.tech.challenge.sistemapedido.application.request.PedidoRequest;
 import br.com.tech.challenge.sistemapedido.application.response.CadastrarPedidoResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
+import br.com.tech.challenge.sistemapedido.application.response.StatusPedidoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -107,4 +108,20 @@ public interface PedidoResourceOpenApi {
             )
     })
     ResponseEntity<Void> finalizado(Long id);
+
+    @Operation(summary = "Verifica o status de pagamento do pedido")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "404",
+                    description = "Pedido não encontrado",
+                    content = @Content(
+                            examples = {
+                                    @ExampleObject(
+                                            value="{\"mensagem\": \"Pedido não encontrado\"}"
+                                    )
+                            }
+                    )
+            )
+    })
+    ResponseEntity<StatusPedidoResponse> verificarStatus(Long id);
 }

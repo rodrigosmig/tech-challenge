@@ -5,12 +5,12 @@ import br.com.tech.challenge.sistemapedido.application.mapper.PedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.application.request.PedidoRequest;
 import br.com.tech.challenge.sistemapedido.application.response.CadastrarPedidoResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
+import br.com.tech.challenge.sistemapedido.application.response.StatusPedidoResponse;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUseCase;
 import jakarta.inject.Named;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Named
 public class PedidoController {
@@ -45,6 +45,12 @@ public class PedidoController {
         var pedidos = buscarPedidoUseCase.buscarTodos();
 
         return new ListarPedidosResponse(pedidoMapper.toList(pedidos));
+    }
+
+    public StatusPedidoResponse verificarStatus(Long id) {
+        var pedido = buscarPedidoUseCase.buscarPorId(id);
+
+        return new StatusPedidoResponse(pedido.estaPago());
     }
 
     public void pagar(Long idPedido) {
