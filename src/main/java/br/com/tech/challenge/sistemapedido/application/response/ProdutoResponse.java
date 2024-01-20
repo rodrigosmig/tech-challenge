@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class ProdutoResponse {
-    private ProdutoDTO produto;
+    private final ProdutoDTO produto;
 
     public ProdutoResponse(ProdutoDTO produto) {
         this.produto = produto;
