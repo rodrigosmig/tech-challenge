@@ -18,7 +18,7 @@ public class PedidoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private StatusPedido status;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAtualizacao;

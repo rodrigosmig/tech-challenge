@@ -6,7 +6,7 @@ public enum StatusPedido {
     PRONTO("Pronto"),
     FINALIZADO("Finalizado");
 
-    private String descricao;
+    private final String descricao;
 
     StatusPedido(String descricao) {
         this.descricao = descricao;

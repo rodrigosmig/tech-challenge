@@ -43,7 +43,8 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
     @Override
     public List<Pedido> buscarTodos() {
-        return pedidoRepository.findAll()
+        var statusList = Arrays.asList(StatusPedido.RECEBIDO, StatusPedido.EM_PREPARACAO, StatusPedido.PRONTO);
+        return pedidoRepository.findAllByStatus(statusList)
                 .stream()
                 .map(pedidoMapper::toDomain)
                 .toList();
