@@ -1,20 +1,20 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.repository;
+package br.com.tech.challenge.sistemapedido.infrastructure.persistence.gateway;
 
 import br.com.tech.challenge.sistemapedido.domain.ItemPedido;
 import br.com.tech.challenge.sistemapedido.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.domain.event.AlteracaoStatusPedidoEvent;
 import br.com.tech.challenge.sistemapedido.domain.event.PedidoPagoEvent;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.FilaClienteRepositoryJpa;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.PedidoRepositoryJpa;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.event.publisher.PedidoPublisher;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ItemPedidoModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PedidoModelMapper;
-import br.com.tech.challenge.sistemapedido.infrastructure.model.FilaClienteModel;
-import br.com.tech.challenge.sistemapedido.infrastructure.model.FilaRestauranteModel;
-import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.FilaClienteRepositoryJpa;
-import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.FilaRestauranteRepositoryJpa;
-import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.ItemPedidoRepositoryJpa;
-import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.PedidoRepositoryJpa;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.FilaClienteModel;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.FilaRestauranteModel;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.FilaRestauranteRepositoryJpa;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.ItemPedidoRepositoryJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

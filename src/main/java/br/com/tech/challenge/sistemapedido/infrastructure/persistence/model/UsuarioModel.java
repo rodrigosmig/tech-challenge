@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.model;
+package br.com.tech.challenge.sistemapedido.infrastructure.persistence.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

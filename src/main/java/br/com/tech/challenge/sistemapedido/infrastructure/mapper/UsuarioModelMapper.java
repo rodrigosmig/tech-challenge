@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.mapper;
 
 import br.com.tech.challenge.sistemapedido.domain.Usuario;
-import br.com.tech.challenge.sistemapedido.infrastructure.model.UsuarioModel;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.UsuarioModel;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;

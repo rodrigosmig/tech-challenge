@@ -1,9 +1,9 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.repository;
+package br.com.tech.challenge.sistemapedido.infrastructure.persistence.gateway;
 
 import br.com.tech.challenge.sistemapedido.domain.Usuario;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.UsuarioRepositoryJpa;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.UsuarioModelMapper;
-import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.UsuarioRepositoryJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

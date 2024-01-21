@@ -26,4 +26,15 @@ public class PagarPedidoInteractor implements PagarPedidoUseCase {
 
         pedidoGateway.pagar(pedido);
     }
+
+    @Override
+    public void gerarPagamento(Long idPedido) {
+        var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
+
+        if (pedido.estaPago()) {
+            throw new PedidoJaPagoException(idPedido);
+        }
+
+        var teste = "";
+    }
 }

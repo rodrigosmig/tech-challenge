@@ -1,9 +1,9 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.repository;
+package br.com.tech.challenge.sistemapedido.infrastructure.persistence.gateway;
 
 import br.com.tech.challenge.sistemapedido.domain.Produto;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.ProdutoModelMapper;
-import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.ProdutoRepositoryJpa;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.ProdutoRepositoryJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

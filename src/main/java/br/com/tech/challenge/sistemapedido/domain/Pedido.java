@@ -53,8 +53,8 @@ public class Pedido {
         return total;
     }
 
-    public Boolean estaPago() {
-        return pago;
+    public boolean estaPago() {
+        return Boolean.TRUE.equals(pago);
     }
 
     public void adicionarItens(List<ItemPedido> itens) {

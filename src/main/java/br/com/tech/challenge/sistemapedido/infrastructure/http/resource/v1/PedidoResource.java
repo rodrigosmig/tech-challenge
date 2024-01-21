@@ -72,4 +72,12 @@ public class PedidoResource implements PedidoResourceOpenApi {
 
         return ResponseEntity.ok(resposta);
     }
+
+    @Override
+    @PostMapping("/{idPedido}/gerar-pagamento")
+    public ResponseEntity<Void> gerarPagamento(@PathVariable Long idPedido) {
+        controller.gerarPagamento(idPedido);
+
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -1,4 +1,4 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.model;
+package br.com.tech.challenge.sistemapedido.infrastructure.persistence.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "fila_cliente")
-public class FilaClienteModel {
+@Table(name = "fila_restaurante")
+public class FilaRestauranteModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

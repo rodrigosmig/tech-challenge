@@ -1,9 +1,9 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.repository;
+package br.com.tech.challenge.sistemapedido.infrastructure.persistence.gateway;
 
 import br.com.tech.challenge.sistemapedido.domain.Papel;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PapelGateway;
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PapelModelMapper;
-import br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa.PapelRepositoryJpa;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.PapelRepositoryJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

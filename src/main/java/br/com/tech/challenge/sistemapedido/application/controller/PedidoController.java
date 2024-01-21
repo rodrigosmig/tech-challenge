@@ -53,6 +53,12 @@ public class PedidoController {
         return new StatusPedidoResponse(pedido.estaPago());
     }
 
+    public void gerarPagamento(Long idPedido) {
+        pagarPedidoUseCase.gerarPagamento(idPedido);
+
+
+    }
+
     public void pagar(Long idPedido) {
         pagarPedidoUseCase.pagar(idPedido);
     }

@@ -1,6 +1,6 @@
-package br.com.tech.challenge.sistemapedido.infrastructure.repository.jpa;
+package br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa;
 
-import br.com.tech.challenge.sistemapedido.infrastructure.model.UsuarioModel;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.UsuarioModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
