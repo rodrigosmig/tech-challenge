@@ -42,3 +42,4 @@ rest:
             url: https://api.mercadopago.com
             user-id: 30558182
             pos-id: FIAP001POS001
+            notification-url: "https://www.yourserver.com/notifications"

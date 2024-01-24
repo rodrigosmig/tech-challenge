@@ -1,10 +1,9 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1;
 
 import br.com.tech.challenge.sistemapedido.application.dto.InputErrorDTO;
-import br.com.tech.challenge.sistemapedido.domain.exception.EntityNotFoundException;
-import br.com.tech.challenge.sistemapedido.domain.exception.PedidoJaPagoException;
-import br.com.tech.challenge.sistemapedido.domain.exception.PedidoNaoPagoException;
-import br.com.tech.challenge.sistemapedido.domain.exception.PedidoStatusIncorretoException;
+import br.com.tech.challenge.sistemapedido.domain.exception.*;
+import br.com.tech.challenge.sistemapedido.infrastructure.exception.DefaultFeignException;
+import br.com.tech.challenge.sistemapedido.infrastructure.integration.transfer.IntegrationErrorTO;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +32,16 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<InputErrorDTO> constraintViolation(UsernameNotFoundException exception) {
         return new ResponseEntity<>(new InputErrorDTO(exception.getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DefaultFeignException.class)
+    public ResponseEntity<IntegrationErrorTO> defaultFeign(DefaultFeignException exception) {
+        return new ResponseEntity<>(new IntegrationErrorTO(exception.getStatus(), exception.getError(), exception.getMessage()),
+                HttpStatus.valueOf(exception.getStatus()));
+    }
+
+    @ExceptionHandler(InternalErrorException.class)
+    public ResponseEntity<InputErrorDTO> constraintViolation(InternalErrorException exception) {
+        return new ResponseEntity<>(new InputErrorDTO(exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

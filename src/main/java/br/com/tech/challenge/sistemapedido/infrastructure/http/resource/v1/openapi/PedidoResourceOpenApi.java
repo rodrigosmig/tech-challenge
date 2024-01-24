@@ -16,8 +16,6 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 @Tag(name = "Pedidos", description = "Gerencia os pedidos")

@@ -2,14 +2,15 @@ package br.com.tech.challenge.sistemapedido.infrastructure.service;
 
 import br.com.tech.challenge.sistemapedido.domain.ItemPedido;
 import br.com.tech.challenge.sistemapedido.domain.Pedido;
+import br.com.tech.challenge.sistemapedido.domain.exception.InternalErrorException;
 import br.com.tech.challenge.sistemapedido.domain.exception.SistemaPedidosAPIException;
 import br.com.tech.challenge.sistemapedido.infrastructure.integration.rest.mercadopago.GerarCodigoQrRequest;
 import br.com.tech.challenge.sistemapedido.infrastructure.integration.rest.mercadopago.MercadoPagoHttpClient;
 import br.com.tech.challenge.sistemapedido.infrastructure.integration.rest.qrcodeapi.QrCodeHttpClient;
 import br.com.tech.challenge.sistemapedido.infrastructure.integration.transfer.ItemTO;
 import br.com.tech.challenge.sistemapedido.usecase.service.GerarPagamentoService;
-import feign.FeignException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -31,7 +31,11 @@ import java.util.Objects;
 public class GerarPagamentoServiceImpl implements GerarPagamentoService {
     private final MercadoPagoHttpClient mercadopagoHttpClient;
     private final QrCodeHttpClient qrCodeHttpClient;
-    private final Long HORAS = 2L;
+    private final Long HORAS_ADICIONAIS = 2L;
+    private final String DEFAULT_PATH = "qr-codes/qrcode-pedido-";
+
+    @Value("${rest.service.mercadopago.notification-url}")
+    private String notificationUrl;
 
     @Override
     public File gerarQrCode(Pedido pedido) {
@@ -53,17 +57,13 @@ public class GerarPagamentoServiceImpl implements GerarPagamentoService {
 
             ByteArrayInputStream bis = new ByteArrayInputStream(qrCodeImage);
             BufferedImage bufferedImage = ImageIO.read(bis);
-            String fileName = "qr-codes/qrcode-pedido-" + pedido.getId() + ".png";
+            String fileName = DEFAULT_PATH + pedido.getId() + ".png";
             var file = new File(fileName);
             ImageIO.write(bufferedImage, "png", file);
 
             return file;
-        } catch (FeignException ex) {
-            //TODO melhora a captura da excecao
-            var teste = ex.responseBody();
-          throw new SistemaPedidosAPIException(HttpStatus.valueOf(ex.status()), ex.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new InternalErrorException(e.getMessage());
         }
 
     }
@@ -74,13 +74,13 @@ public class GerarPagamentoServiceImpl implements GerarPagamentoService {
         ZoneId zone = ZoneId.of("America/Sao_Paulo");
         ZonedDateTime expiration = new Date().toInstant()
                 .atZone(zone)
-                .toLocalDateTime().plusHours(HORAS).atZone(zone);
+                .toLocalDateTime().plusHours(HORAS_ADICIONAIS).atZone(zone);
 
         return GerarCodigoQrRequest.builder()
                 .description("Pedido para pagamento")
                 .externalReference(pedido.getId().toString())
                 .expirationDate(expiration)
-                .notificationUrl("https://www.yourserver.com/notifications")
+                .notificationUrl(notificationUrl)
                 .title("Restaurante Fiap")
                 .totalAmount(pedido.getTotal().getPreco())
                 .items(items)
