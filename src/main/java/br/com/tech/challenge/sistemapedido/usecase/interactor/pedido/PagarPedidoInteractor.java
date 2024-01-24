@@ -7,6 +7,9 @@ import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUs
 import br.com.tech.challenge.sistemapedido.usecase.service.GerarPagamentoService;
 import jakarta.inject.Named;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 @Named
 public class PagarPedidoInteractor implements PagarPedidoUseCase {
     private final BuscarPedidoUseCase buscarPedidoUseCase;
@@ -31,13 +34,13 @@ public class PagarPedidoInteractor implements PagarPedidoUseCase {
     }
 
     @Override
-    public void gerarPagamento(Long idPedido) {
+    public File gerarPagamento(Long idPedido) {
         var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
 
         if (pedido.estaPago()) {
             throw new PedidoJaPagoException(idPedido);
         }
 
-        gerarPagamentoService.gerar(pedido);
+        return gerarPagamentoService.gerarQrCode(pedido);
     }
 }
