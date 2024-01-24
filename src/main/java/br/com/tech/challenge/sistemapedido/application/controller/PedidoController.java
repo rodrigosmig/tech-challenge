@@ -12,6 +12,8 @@ import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUs
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUseCase;
 import jakarta.inject.Named;
 
+import java.io.File;
+
 @Named
 public class PedidoController {
     private final CriarPedidoUseCase criarPedidoUseCase;
@@ -51,6 +53,10 @@ public class PedidoController {
         var pedido = buscarPedidoUseCase.buscarPorId(id);
 
         return new StatusPedidoResponse(pedido.estaPago());
+    }
+
+    public File gerarPagamento(Long idPedido) {
+        return pagarPedidoUseCase.gerarPagamento(idPedido);
     }
 
     public void pagar(Long idPedido) {

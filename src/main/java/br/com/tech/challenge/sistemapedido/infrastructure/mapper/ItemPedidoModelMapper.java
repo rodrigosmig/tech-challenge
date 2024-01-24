@@ -3,7 +3,7 @@ package br.com.tech.challenge.sistemapedido.infrastructure.mapper;
 import br.com.tech.challenge.sistemapedido.domain.ItemPedido;
 import br.com.tech.challenge.sistemapedido.domain.vo.Observacao;
 import br.com.tech.challenge.sistemapedido.domain.vo.Quantidade;
-import br.com.tech.challenge.sistemapedido.infrastructure.model.ItemPedidoModel;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.ItemPedidoModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

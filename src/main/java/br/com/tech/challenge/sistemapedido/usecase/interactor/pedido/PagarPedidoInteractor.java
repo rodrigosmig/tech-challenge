@@ -4,15 +4,21 @@ import br.com.tech.challenge.sistemapedido.domain.exception.PedidoJaPagoExceptio
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.service.GerarPagamentoService;
 import jakarta.inject.Named;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 @Named
 public class PagarPedidoInteractor implements PagarPedidoUseCase {
     private final BuscarPedidoUseCase buscarPedidoUseCase;
+    private final GerarPagamentoService gerarPagamentoService;
     private final PedidoGateway pedidoGateway;
 
-    public PagarPedidoInteractor(BuscarPedidoUseCase buscarPedidoUseCase, PedidoGateway pedidoGateway) {
+    public PagarPedidoInteractor(BuscarPedidoUseCase buscarPedidoUseCase, GerarPagamentoService gerarPagamentoService, PedidoGateway pedidoGateway) {
         this.buscarPedidoUseCase = buscarPedidoUseCase;
+        this.gerarPagamentoService = gerarPagamentoService;
         this.pedidoGateway = pedidoGateway;
     }
 
@@ -25,5 +31,16 @@ public class PagarPedidoInteractor implements PagarPedidoUseCase {
         }
 
         pedidoGateway.pagar(pedido);
+    }
+
+    @Override
+    public File gerarPagamento(Long idPedido) {
+        var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
+
+        if (pedido.estaPago()) {
+            throw new PedidoJaPagoException(idPedido);
+        }
+
+        return gerarPagamentoService.gerarQrCode(pedido);
     }
 }

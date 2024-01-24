@@ -3,9 +3,8 @@ package br.com.tech.challenge.sistemapedido.domain.exception;
 import org.springframework.http.HttpStatus;
 
 public class SistemaPedidosAPIException extends RuntimeException {
-
-    private HttpStatus status;
-    private String message;
+    private final HttpStatus status;
+    private final String message;
 
     public SistemaPedidosAPIException(HttpStatus status, String message) {
         this.status = status;

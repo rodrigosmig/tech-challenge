@@ -1,7 +1,7 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.mapper;
 
 import br.com.tech.challenge.sistemapedido.domain.Papel;
-import br.com.tech.challenge.sistemapedido.infrastructure.model.PapelModel;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.PapelModel;
 import org.springframework.stereotype.Component;
 
 @Component
