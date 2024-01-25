@@ -6,5 +6,4 @@ import java.io.File;
 
 public interface GerarPagamentoService {
     File gerarQrCode(Pedido pedido);
-
 }

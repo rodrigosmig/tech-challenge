@@ -3,7 +3,6 @@ package br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1;
 import br.com.tech.challenge.sistemapedido.application.controller.PedidoController;
 import br.com.tech.challenge.sistemapedido.application.request.PedidoRequest;
 import br.com.tech.challenge.sistemapedido.application.response.CadastrarPedidoResponse;
-import br.com.tech.challenge.sistemapedido.application.response.GerarQrCodeResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.response.StatusPedidoResponse;
 import br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1.openapi.PedidoResourceOpenApi;
@@ -15,12 +14,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
@@ -42,14 +38,6 @@ public class PedidoResource implements PedidoResourceOpenApi {
         var resposta = controller.listar();
 
         return ResponseEntity.ok(resposta);
-    }
-
-    @Override
-    @PostMapping("{idPedido}/pagar")
-    public ResponseEntity<Void> pagar(@PathVariable Long idPedido) {
-        controller.pagar(idPedido);
-
-        return ResponseEntity.noContent().build();
     }
 
     @Override
@@ -96,5 +84,17 @@ public class PedidoResource implements PedidoResourceOpenApi {
                 .contentLength(arquivo.length())
                 .contentType(MediaType.IMAGE_PNG)
                 .body(new ByteArrayResource(Files.readAllBytes(arquivo.toPath())));
+    }
+
+    @Override
+    @PostMapping("/confirmar-pagamento")
+    public ResponseEntity<Void> receberConfirmacaoPagamento(@RequestParam(required = false) Long id,
+                                                      @RequestParam(required = false) String topic) {
+
+        if (Objects.nonNull(topic) && topic.equalsIgnoreCase("merchant_order") && Objects.nonNull(id)) {
+            controller.receberConfirmacaoPagamento(id);
+        }
+
+        return ResponseEntity.ok().build();
     }
 }

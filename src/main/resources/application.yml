@@ -25,7 +25,7 @@ spring:
                 mercadopago:
                     default-request-headers:
                         Authorization:
-                            - Bearer TEST-6984517101606809-011920-1a6674e897099670d450d52d2ae5b5ae-30558182
+                            - Bearer TEST-6416668675808261-012515-7dac31f086dd3bdf5d7137ace77d0ad1-1654958216
 
 app:
     jwt-secret: daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
@@ -40,6 +40,6 @@ rest:
     service:
         mercadopago:
             url: https://api.mercadopago.com
-            user-id: 30558182
+            user-id: 1654958216
             pos-id: FIAP001POS001
-            notification-url: "https://www.yourserver.com/notifications"
+            notification-url: "https://b321-187-19-179-63.ngrok-free.app/api/v1/pedidos/confirmar-pagamento"
