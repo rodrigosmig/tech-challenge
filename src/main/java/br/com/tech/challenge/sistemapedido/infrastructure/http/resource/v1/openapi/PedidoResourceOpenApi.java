@@ -36,25 +36,6 @@ public interface PedidoResourceOpenApi {
     })
     ResponseEntity<ListarPedidosResponse> listar();
 
-    @Operation(summary = "Marca um pedido como pago")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204"),
-            @ApiResponse(responseCode = "404",
-                    description = "Pedido não encontrado",
-                    content = @Content(
-                            examples = {
-                                    @ExampleObject(
-                                            value="{\"mensagem\": \"Pedido não encontrado\"}"
-                                    )
-                            }
-                    )
-            ),
-            @ApiResponse(responseCode = "422",
-                    content = { @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = InputErrorDTO.class)) }
-            )
-    })
-    ResponseEntity<Void> pagar(Long id);
-
     @Operation(summary = "Altera o status do pedido para Em Preparação")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204"),
@@ -143,4 +124,11 @@ public interface PedidoResourceOpenApi {
             )
     })
     ResponseEntity<ByteArrayResource> gerarPagamento(Long id) throws IOException;
+
+
+    @Operation(summary = "Recebe a confirmação de Pagamento do Mercado Livre")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200")
+    })
+    ResponseEntity<Void> receberConfirmacaoPagamento(Long id, String topic);
 }

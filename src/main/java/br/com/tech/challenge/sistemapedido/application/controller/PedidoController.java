@@ -10,6 +10,7 @@ import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatus
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.service.ConfirmarPagamento;
 import jakarta.inject.Named;
 
 import java.io.File;
@@ -20,19 +21,23 @@ public class PedidoController {
     private final BuscarPedidoUseCase buscarPedidoUseCase;
     private final PagarPedidoUseCase pagarPedidoUseCase;
     private final AlterarStatusPedidoUseCase alterarStatusPedidoUseCase;
+    private final ConfirmarPagamento confirmarPagamento;
     private final ItemPedidoDataMapper itemPedidoMapper;
     private final PedidoDataMapper pedidoMapper;
+
 
     public PedidoController(CriarPedidoUseCase criarPedidoUseCase,
                             BuscarPedidoUseCase buscarPedidoUseCase,
                             PagarPedidoUseCase pagarPedidoUseCase,
                             AlterarStatusPedidoUseCase alterarStatusPedidoUseCase,
+                            ConfirmarPagamento confirmarPagamento,
                             ItemPedidoDataMapper itemPedidoMapper,
                             PedidoDataMapper pedidoMapper) {
         this.criarPedidoUseCase = criarPedidoUseCase;
         this.buscarPedidoUseCase = buscarPedidoUseCase;
         this.pagarPedidoUseCase = pagarPedidoUseCase;
         this.alterarStatusPedidoUseCase = alterarStatusPedidoUseCase;
+        this.confirmarPagamento = confirmarPagamento;
         this.itemPedidoMapper = itemPedidoMapper;
         this.pedidoMapper = pedidoMapper;
     }
@@ -55,12 +60,12 @@ public class PedidoController {
         return new StatusPedidoResponse(pedido.estaPago());
     }
 
-    public File gerarPagamento(Long idPedido) {
-        return pagarPedidoUseCase.gerarPagamento(idPedido);
+    public void receberConfirmacaoPagamento(Long id) {
+        confirmarPagamento.confirmarPagamento(id);
     }
 
-    public void pagar(Long idPedido) {
-        pagarPedidoUseCase.pagar(idPedido);
+    public File gerarPagamento(Long idPedido) {
+        return pagarPedidoUseCase.gerarPagamento(idPedido);
     }
 
     public void preparacao(Long idPedido) {
