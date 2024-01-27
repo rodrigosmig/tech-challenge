@@ -7,7 +7,9 @@ import br.com.tech.challenge.sistemapedido.domain.vo.Data;
 import br.com.tech.challenge.sistemapedido.domain.vo.Preco;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.ObterUsuarioUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 
@@ -15,20 +17,23 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @Named
 public class CriarPedidoInteractor implements CriarPedidoUseCase {
     private final BuscarProdutoUseCase buscarProdutoUseCase;
+    private final ObterUsuarioUseCase obterUsuarioUseCase;
     private final PedidoGateway pedidoGateway;
 
-    public CriarPedidoInteractor(BuscarProdutoUseCase buscarProdutoUseCase, PedidoGateway pedidoGateway) {
+    public CriarPedidoInteractor(BuscarProdutoUseCase buscarProdutoUseCase, ObterUsuarioUseCase obterUsuarioUseCase, PedidoGateway pedidoGateway) {
         this.buscarProdutoUseCase = buscarProdutoUseCase;
+        this.obterUsuarioUseCase = obterUsuarioUseCase;
         this.pedidoGateway = pedidoGateway;
     }
 
     @Override
     @Transactional
-    public Pedido criar(List<ItemPedido> itensPedido) {
+    public Pedido criar(List<ItemPedido> itensPedido, String cpf) {
         var novosItens = new LinkedList<ItemPedido>();
         var pedido = Pedido.builder()
                 .status(StatusPedido.RECEBIDO)
@@ -43,6 +48,11 @@ public class CriarPedidoInteractor implements CriarPedidoUseCase {
         var itens = this.validarItens(itensPedido, pedido);
         pedido.adicionarItens(itens);
         pedido.calcularTotal();
+
+        if(validarCpf(cpf)) {
+            var usuario = obterUsuarioUseCase.obterPorCPF(cpf);
+            pedido.adicionarUsuario(usuario);
+        }
 
         return pedidoGateway.salvar(pedido, itens);
     }
@@ -59,5 +69,10 @@ public class CriarPedidoInteractor implements CriarPedidoUseCase {
                             .build();
                 })
                 .toList();
+    }
+
+    private boolean validarCpf(String cpf) {
+        return Objects.nonNull(cpf)
+                && cpf.length() == 11;
     }
 }

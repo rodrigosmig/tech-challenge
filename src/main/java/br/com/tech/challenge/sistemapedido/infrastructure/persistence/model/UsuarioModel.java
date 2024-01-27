@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -30,6 +31,9 @@ public class UsuarioModel {
     @Email
     private String email;
     private String senha;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<PedidoModel> pedidos;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "usuario_papeis",

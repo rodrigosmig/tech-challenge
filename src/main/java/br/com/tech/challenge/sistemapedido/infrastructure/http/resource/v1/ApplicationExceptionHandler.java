@@ -7,6 +7,7 @@ import br.com.tech.challenge.sistemapedido.infrastructure.integration.transfer.I
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -43,5 +44,11 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(InternalErrorException.class)
     public ResponseEntity<InputErrorDTO> constraintViolation(InternalErrorException exception) {
         return new ResponseEntity<>(new InputErrorDTO(exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    protected ResponseEntity<InputErrorDTO> handleBadCredentials(AuthenticationException exception) {
+
+        return new ResponseEntity<>(new InputErrorDTO(exception.getMessage()), HttpStatus.UNAUTHORIZED);
     }
 }

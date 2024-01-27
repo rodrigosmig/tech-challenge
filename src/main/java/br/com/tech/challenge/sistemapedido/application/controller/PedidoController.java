@@ -43,7 +43,7 @@ public class PedidoController {
     }
 
     public CadastrarPedidoResponse criar(PedidoRequest request) {
-        var pedido = criarPedidoUseCase.criar(itemPedidoMapper.toDomainList(request.itens()));
+        var pedido = criarPedidoUseCase.criar(itemPedidoMapper.toDomainList(request.itens()), request.cpf());
 
         return new CadastrarPedidoResponse(pedido.getId());
     }

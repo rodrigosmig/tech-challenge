@@ -14,6 +14,7 @@ public class Pedido {
     private List<ItemPedido> itens;
     private Preco total;
     private Boolean pago;
+    private Usuario usuario;
 
     public Pedido(PedidoBuilder pedidoBuilder) {
         this.id = pedidoBuilder.id;
@@ -23,6 +24,7 @@ public class Pedido {
         this.itens = pedidoBuilder.itens;
         this.total = pedidoBuilder.total;
         this.pago = pedidoBuilder.pago;
+        this.usuario = pedidoBuilder.usuario;
     }
 
     public static PedidoBuilder builder() {
@@ -53,12 +55,19 @@ public class Pedido {
         return total;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
     public boolean estaPago() {
         return Boolean.TRUE.equals(pago);
     }
 
     public void adicionarItens(List<ItemPedido> itens) {
         this.itens = itens;
+    }
+    public void adicionarUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public void calcularTotal() {
@@ -96,6 +105,7 @@ public class Pedido {
         private List<ItemPedido> itens;
         private Preco total;
         private Boolean pago;
+        private Usuario usuario;
 
         public PedidoBuilder id(Long id) {
             this.id = id;
@@ -129,6 +139,11 @@ public class Pedido {
 
         public PedidoBuilder pago(Boolean pago) {
             this.pago = pago;
+            return this;
+        }
+
+        public PedidoBuilder usuario(Usuario usuario) {
+            this.usuario = usuario;
             return this;
         }
 
