@@ -6,6 +6,7 @@ import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Objects;
 
 @Named
 @RequiredArgsConstructor
@@ -17,12 +18,15 @@ public class PedidoDataMapper {
                 .map(itemPedidoMapper::toDTO)
                 .toList();
 
+        var nomeCliente = Objects.nonNull(pedido.getUsuario()) ? pedido.getUsuario().getNome() : "";
+
         return new PedidoDTO(pedido.getId(),
                 pedido.getStatus(),
                 pedido.getDataCriacao().getData(),
                 pedido.getDataAtualizacao().getData(),
                 pedido.getTotal().getPreco(),
                 pedido.estaPago(),
+                nomeCliente,
                 itens);
     }
 

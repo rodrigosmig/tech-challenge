@@ -6,6 +6,6 @@ import br.com.tech.challenge.sistemapedido.domain.Pedido;
 import java.util.List;
 
 public interface CriarPedidoUseCase {
-    Pedido criar(List<ItemPedido> pedido);
+    Pedido criar(List<ItemPedido> pedido, String cpf);
 
 }

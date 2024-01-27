@@ -31,9 +31,9 @@ public class UsuarioGatewayImpl implements UsuarioGateway {
 
     @Override
     public Usuario salvar(Usuario usuario) {
-        var produtoModel = repository.save(usuarioMapper.toModel(usuario));
+        var usuarioModel = repository.save(usuarioMapper.toModel(usuario));
 
-        return usuarioMapper.toDomain(produtoModel);
+        return usuarioMapper.toDomain(usuarioModel);
     }
 
     @Override
