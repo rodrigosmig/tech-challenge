@@ -111,3 +111,7 @@ http://localhost:8080/v3/api-docs
 ```bash
 http://localhost:8080/swagger-ui/index.html
 ``` 
+
+## Webhook de confirmação de pagamento do Mercado Pago
+#### Para fins de testes podemos usar a url abaixo para confirmar o pagamento do pedido
+- /v1/pedidos/confirmar-pagamento?id={idPedido}&topic=mock

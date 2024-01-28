@@ -64,6 +64,10 @@ public class PedidoController {
         confirmarPagamento.confirmarPagamento(id);
     }
 
+    public void pagar(Long idPedido) {
+        pagarPedidoUseCase.pagar(idPedido);
+    }
+
     public File gerarPagamento(Long idPedido) {
         return pagarPedidoUseCase.gerarPagamento(idPedido);
     }
