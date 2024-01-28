@@ -19,6 +19,8 @@
         <springdoc.version>2.2.0</springdoc.version>
         <archunit-junit5.version>1.1.0</archunit-junit5.version>
         <spring-cloud.version>2022.0.4</spring-cloud.version>
+        <!-- Define the Jib version -->
+        <jib-maven-plugin.version>3.4.0</jib-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -127,6 +129,58 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:17-oracle</image>
+                        <platforms>
+                            <platform>
+                                <architecture>amd64</architecture>
+                                <os>linux</os>
+                            </platform>
+                            <platform>
+                                <architecture>arm64</architecture>
+                                <os>linux</os>
+                            </platform>
+                        </platforms>
+                    </from>
+                    <to>
+                        <image>docker.io/thomarabelo/fiap-tech_challenge</image>
+                        <tags>
+                            <tag>${project.version}</tag>
+                            <tag>latest</tag>
+                        </tags>
+                        <!--                        <auth>-->
+                        <!--                            <username>usuario</username>-->
+                        <!--                            <password>senha</password>-->
+                        <!--                        </auth>-->
+                    </to>
+                    <containerizingMode>packaged</containerizingMode>
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-Xms512m</jvmFlag>
+                            <jvmFlag>-Xdebug</jvmFlag>
+                        </jvmFlags>
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                        <format>Docker</format>
+                    </container>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
