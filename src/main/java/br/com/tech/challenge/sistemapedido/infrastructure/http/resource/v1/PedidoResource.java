@@ -6,6 +6,7 @@ import br.com.tech.challenge.sistemapedido.application.response.CadastrarPedidoR
 import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.response.StatusPedidoResponse;
 import br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1.openapi.PedidoResourceOpenApi;
+import br.com.tech.challenge.sistemapedido.infrastructure.integration.rest.mercadopago.EventoConfirmacaoPagamento;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -89,9 +90,13 @@ public class PedidoResource implements PedidoResourceOpenApi {
     @Override
     @PostMapping("/confirmar-pagamento")
     public ResponseEntity<Void> receberConfirmacaoPagamento(@RequestParam(required = false) Long id,
-                                                      @RequestParam(required = false) String topic) {
+                                                      @RequestParam(required = false) EventoConfirmacaoPagamento topic) {
 
-        if (Objects.nonNull(topic) && topic.equalsIgnoreCase("merchant_order") && Objects.nonNull(id)) {
+        if (EventoConfirmacaoPagamento.MOCK.equals(topic) && Objects.nonNull(id)) {
+            controller.pagar(id);
+        }
+
+        if (EventoConfirmacaoPagamento.MERCHANT_ORDER.equals(topic) && Objects.nonNull(id)) {
             controller.receberConfirmacaoPagamento(id);
         }
 

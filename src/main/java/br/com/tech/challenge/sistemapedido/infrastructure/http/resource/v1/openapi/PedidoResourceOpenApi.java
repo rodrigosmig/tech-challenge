@@ -5,6 +5,7 @@ import br.com.tech.challenge.sistemapedido.application.request.PedidoRequest;
 import br.com.tech.challenge.sistemapedido.application.response.CadastrarPedidoResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.response.StatusPedidoResponse;
+import br.com.tech.challenge.sistemapedido.infrastructure.integration.rest.mercadopago.EventoConfirmacaoPagamento;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -130,5 +131,5 @@ public interface PedidoResourceOpenApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200")
     })
-    ResponseEntity<Void> receberConfirmacaoPagamento(Long id, String topic);
+    ResponseEntity<Void> receberConfirmacaoPagamento(Long id, EventoConfirmacaoPagamento topic);
 }
