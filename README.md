@@ -112,6 +112,11 @@ http://localhost:8080/v3/api-docs
 http://localhost:8080/swagger-ui/index.html
 ``` 
 
-## Webhook de confirmação de pagamento do Mercado Pago
-#### Para fins de testes podemos usar a url abaixo para confirmar o pagamento do pedido
-- /v1/pedidos/confirmar-pagamento?id={idPedido}&topic=mock
+## Collections
+- [Postman](https://www.notion.so/Collections-Postman-bca1db2d372f461aba8dbd2bda3d8c7c)
+
+## Arquitetura
+- [Desenho da arquiteura](https://www.notion.so/Desenho-da-Arquitetura-5f18026863624d638ed4521905471dd0)
+
+## Demonstração
+- [Vídeo](https://youtu.be/W8E1y0WxSts)
