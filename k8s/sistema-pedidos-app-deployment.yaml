@@ -4,7 +4,7 @@ metadata:
   name: sistema-pedidos-app
   namespace: sistema-pedidos
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: sistema-pedidos-app
@@ -56,6 +56,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: sistema-pedidos-app
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 10  # Adjust based on your requirements
   targetCPUUtilizationPercentage: 70  # Adjust based on your requirements
