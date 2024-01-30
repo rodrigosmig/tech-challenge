@@ -113,10 +113,10 @@ http://localhost:8080/swagger-ui/index.html
 ``` 
 
 ## Collections
-- [Postman](https://www.notion.so/Collections-Postman-bca1db2d372f461aba8dbd2bda3d8c7c)
+- [Postman](https://ancient-dash-91c.notion.site/Collections-Postman-bca1db2d372f461aba8dbd2bda3d8c7c)
 
 ## Arquitetura
-- [Desenho da arquiteura](https://www.notion.so/Desenho-da-Arquitetura-5f18026863624d638ed4521905471dd0)
+- [Desenho da arquiteura](https://miro.com/app/board/uXjVN0azgFA=/)
 
 ## Demonstração
 - [Vídeo](https://youtu.be/W8E1y0WxSts)
