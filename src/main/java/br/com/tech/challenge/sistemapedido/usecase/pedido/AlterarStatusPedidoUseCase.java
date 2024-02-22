@@ -1,24 +1,22 @@
-package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
+package br.com.tech.challenge.sistemapedido.usecase.pedido;
 
 import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.domain.exception.PedidoNaoPagoException;
 import br.com.tech.challenge.sistemapedido.domain.exception.PedidoStatusIncorretoException;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
-import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
 import jakarta.inject.Named;
 
 @Named
-public class AlterarStatusPedidoInteractor implements AlterarStatusPedidoUseCase {
+public class AlterarStatusPedidoUseCase {
     private final PedidoGateway pedidoGateway;
     private final BuscarPedidoUseCase buscarPedidoUseCase;
 
-    public AlterarStatusPedidoInteractor(PedidoGateway pedidoGateway, BuscarPedidoUseCase buscarPedidoUseCase) {
+    public AlterarStatusPedidoUseCase(PedidoGateway pedidoGateway, BuscarPedidoUseCase buscarPedidoUseCase) {
         this.pedidoGateway = pedidoGateway;
         this.buscarPedidoUseCase = buscarPedidoUseCase;
     }
 
-    @Override
     public void alterarParaEmPreparacao(Long idPedido) {
         var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
 
@@ -35,7 +33,6 @@ public class AlterarStatusPedidoInteractor implements AlterarStatusPedidoUseCase
         pedidoGateway.alterarStatus(pedido);
     }
 
-    @Override
     public void alterarParaPronto(Long idPedido) {
         var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
 
@@ -52,7 +49,6 @@ public class AlterarStatusPedidoInteractor implements AlterarStatusPedidoUseCase
         pedidoGateway.alterarStatus(pedido);
     }
 
-    @Override
     public void alterarParaFinalizado(Long idPedido) {
         var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
 

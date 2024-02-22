@@ -1,19 +1,17 @@
-package br.com.tech.challenge.sistemapedido.usecase.interactor.produto;
+package br.com.tech.challenge.sistemapedido.usecase.produto;
 
 import br.com.tech.challenge.sistemapedido.domain.Produto;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
-import br.com.tech.challenge.sistemapedido.usecase.contract.produto.CadastrarProdutoUseCase;
 import jakarta.inject.Named;
 
 @Named
-public class CadastrarProdutoInteractor implements CadastrarProdutoUseCase {
+public class CadastrarProdutoUseCase {
     private final ProdutoGateway repository;
 
-    public CadastrarProdutoInteractor(ProdutoGateway repository) {
+    public CadastrarProdutoUseCase(ProdutoGateway repository) {
         this.repository = repository;
     }
 
-    @Override
     public Produto cadastrar(Produto produto) {
         return repository.salvar(produto);
     }

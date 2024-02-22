@@ -19,17 +19,6 @@ public class ProdutoController {
     private final ExcluirProdutoUseCase excluirProdutoUseCase;
     private final ProdutoDataMapper produtoMapper;
 
-    public ProdutoController(BuscarProdutoUseCase buscarProdutoUseCase,
-                             CadastrarProdutoUseCase cadastrarProdutoUseCase,
-                             AlterarProdutoUseCase alterarProdutoUseCase,
-                             ExcluirProdutoUseCase excluirProdutoUseCase,
-                             ProdutoDataMapper produtoMapper) {
-        this.buscarProdutoUseCase = buscarProdutoUseCase;
-        this.cadastrarProdutoUseCase = cadastrarProdutoUseCase;
-        this.alterarProdutoUseCase = alterarProdutoUseCase;
-        this.excluirProdutoUseCase = excluirProdutoUseCase;
-        this.produtoMapper = produtoMapper;
-    }
 
     public ListarProdutosResponse listar() {
         var produtos = buscarProdutoUseCase.buscarTodos();

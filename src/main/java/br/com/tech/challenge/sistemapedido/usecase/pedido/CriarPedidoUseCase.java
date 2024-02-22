@@ -1,11 +1,10 @@
-package br.com.tech.challenge.sistemapedido.usecase.interactor.pedido;
+package br.com.tech.challenge.sistemapedido.usecase.pedido;
 
 import br.com.tech.challenge.sistemapedido.domain.ItemPedido;
 import br.com.tech.challenge.sistemapedido.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
 import br.com.tech.challenge.sistemapedido.domain.vo.Data;
 import br.com.tech.challenge.sistemapedido.domain.vo.Preco;
-import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.ObterUsuarioUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
@@ -19,18 +18,17 @@ import java.util.List;
 import java.util.Objects;
 
 @Named
-public class CriarPedidoInteractor implements CriarPedidoUseCase {
+public class CriarPedidoUseCase {
     private final BuscarProdutoUseCase buscarProdutoUseCase;
     private final ObterUsuarioUseCase obterUsuarioUseCase;
     private final PedidoGateway pedidoGateway;
 
-    public CriarPedidoInteractor(BuscarProdutoUseCase buscarProdutoUseCase, ObterUsuarioUseCase obterUsuarioUseCase, PedidoGateway pedidoGateway) {
+    public CriarPedidoUseCase(BuscarProdutoUseCase buscarProdutoUseCase, ObterUsuarioUseCase obterUsuarioUseCase, PedidoGateway pedidoGateway) {
         this.buscarProdutoUseCase = buscarProdutoUseCase;
         this.obterUsuarioUseCase = obterUsuarioUseCase;
         this.pedidoGateway = pedidoGateway;
     }
 
-    @Override
     @Transactional
     public Pedido criar(List<ItemPedido> itensPedido, String cpf) {
         var novosItens = new LinkedList<ItemPedido>();
