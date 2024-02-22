@@ -2,25 +2,24 @@ package br.com.tech.challenge.sistemapedido.usecase.produto;
 
 import br.com.tech.challenge.sistemapedido.domain.Produto;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
-import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import jakarta.inject.Named;
 
 @Named
 public class AlterarProdutoUseCase {
-    private final ProdutoGateway repository;
-    private final BuscarProdutoUseCase buscarProdutoUseCase;
+    private final ProdutoGateway produtoGateway;
 
-    public AlterarProdutoUseCase(ProdutoGateway repository, BuscarProdutoUseCase buscarProdutoUseCase) {
-        this.repository = repository;
-        this.buscarProdutoUseCase = buscarProdutoUseCase;
+    public AlterarProdutoUseCase(ProdutoGateway produtoGateway) {
+        this.produtoGateway = produtoGateway;
     }
 
     public Produto alterar(Long id, Produto produtoAlterado) {
+        var buscarProdutoUseCase = new BuscarProdutoUseCase(this.produtoGateway);
+
         var produtoAtual = buscarProdutoUseCase.buscarPorId(id);
 
         var produtoAtualizado = atualizarDados(produtoAlterado, produtoAtual);
 
-        return repository.salvar(produtoAtualizado);
+        return produtoGateway.salvar(produtoAtualizado);
     }
 
     private Produto atualizarDados(Produto novoProduto, Produto produtoAtual) {

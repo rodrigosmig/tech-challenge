@@ -2,27 +2,29 @@ package br.com.tech.challenge.sistemapedido.application.controller;
 
 import br.com.tech.challenge.sistemapedido.application.mapper.PedidoDataMapper;
 import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
-import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import jakarta.inject.Named;
 
 @Named
 public class FilaController {
-    private final BuscarPedidoUseCase buscarPedidoUseCase;
+    private final PedidoGateway pedidoGateway;
     private final PedidoDataMapper pedidoMapper;
 
-    public FilaController(BuscarPedidoUseCase buscarPedidoUseCase, PedidoDataMapper pedidoMapper) {
-        this.buscarPedidoUseCase = buscarPedidoUseCase;
+    public FilaController(PedidoGateway pedidoGateway, PedidoDataMapper pedidoMapper) {
+        this.pedidoGateway = pedidoGateway;
         this.pedidoMapper = pedidoMapper;
     }
 
     public ListarPedidosResponse filaRestaurante() {
-        var pedidos = buscarPedidoUseCase.buscarFilaRestaurante();
+        //TODO adicionar use case para a fila
+        var pedidos = pedidoGateway.buscarFilaRestaurante();
 
         return new ListarPedidosResponse(pedidoMapper.toList(pedidos));
     }
 
     public ListarPedidosResponse filaCLiente() {
-        var pedidos = buscarPedidoUseCase.buscarFilaCliente();
+        //TODO adicionar use case para a fila
+        var pedidos = pedidoGateway.buscarFilaCliente();
 
         return new ListarPedidosResponse(pedidoMapper.toList(pedidos));
     }

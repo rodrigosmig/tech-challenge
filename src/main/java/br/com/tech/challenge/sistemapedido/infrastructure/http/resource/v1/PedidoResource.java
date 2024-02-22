@@ -76,15 +76,15 @@ public class PedidoResource implements PedidoResourceOpenApi {
     @Override
     @PostMapping("/{idPedido}/gerar-pagamento")
     public ResponseEntity<ByteArrayResource> gerarPagamento(@PathVariable Long idPedido) throws IOException {
-        var arquivo = controller.gerarPagamento(idPedido);
+        //var arquivo = controller.gerarPagamento(idPedido);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=mercadopago.png");
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentLength(arquivo.length())
-                .contentType(MediaType.IMAGE_PNG)
-                .body(new ByteArrayResource(Files.readAllBytes(arquivo.toPath())));
+        return ResponseEntity.ok().build();
+//                .headers(headers)
+//                .contentLength(arquivo.length())
+//                .contentType(MediaType.IMAGE_PNG)
+//                .body(new ByteArrayResource(Files.readAllBytes(arquivo.toPath())));
     }
 
     @Override
@@ -92,13 +92,13 @@ public class PedidoResource implements PedidoResourceOpenApi {
     public ResponseEntity<Void> receberConfirmacaoPagamento(@RequestParam(required = false) Long id,
                                                       @RequestParam(required = false) EventoConfirmacaoPagamento topic) {
 
-        if (EventoConfirmacaoPagamento.MOCK.equals(topic) && Objects.nonNull(id)) {
-            controller.pagar(id);
-        }
-
-        if (EventoConfirmacaoPagamento.MERCHANT_ORDER.equals(topic) && Objects.nonNull(id)) {
-            controller.receberConfirmacaoPagamento(id);
-        }
+//        if (EventoConfirmacaoPagamento.MOCK.equals(topic) && Objects.nonNull(id)) {
+//            controller.pagar(id);
+//        }
+//
+//        if (EventoConfirmacaoPagamento.MERCHANT_ORDER.equals(topic) && Objects.nonNull(id)) {
+//            controller.receberConfirmacaoPagamento(id);
+//        }
 
         return ResponseEntity.ok().build();
     }
