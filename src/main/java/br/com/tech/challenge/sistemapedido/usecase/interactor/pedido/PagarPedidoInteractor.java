@@ -30,6 +30,8 @@ public class PagarPedidoInteractor implements PagarPedidoUseCase {
             throw new PedidoJaPagoException(pedido.getId());
         }
 
+        pedido.pagar();
+
         pedidoGateway.pagar(pedido);
     }
 

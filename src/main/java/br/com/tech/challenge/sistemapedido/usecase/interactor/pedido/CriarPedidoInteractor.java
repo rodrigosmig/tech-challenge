@@ -9,7 +9,6 @@ import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUs
 import br.com.tech.challenge.sistemapedido.usecase.contract.produto.BuscarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.contract.usuario.ObterUsuarioUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
-import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 
@@ -44,7 +43,7 @@ public class CriarPedidoInteractor implements CriarPedidoUseCase {
                 .itens(novosItens)
                 .build();
 
-        pedido = pedidoGateway.salvar(pedido, novosItens);
+        pedido = pedidoGateway.salvar(pedido);
         var itens = this.validarItens(itensPedido, pedido);
         pedido.adicionarItens(itens);
         pedido.calcularTotal();
@@ -54,7 +53,7 @@ public class CriarPedidoInteractor implements CriarPedidoUseCase {
             pedido.adicionarUsuario(usuario);
         }
 
-        return pedidoGateway.salvar(pedido, itens);
+        return pedidoGateway.salvar(pedido);
     }
 
     private List<ItemPedido> validarItens(List<ItemPedido> itens, Pedido pedido) {

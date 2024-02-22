@@ -7,8 +7,8 @@ import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatus
 import br.com.tech.challenge.sistemapedido.infrastructure.mapper.PedidoModelMapper;
 import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.FilaClienteModel;
 import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.FilaRestauranteModel;
-import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.FilaClienteRepositoryJpa;
-import br.com.tech.challenge.sistemapedido.infrastructure.persistence.jpa.FilaRestauranteRepositoryJpa;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.repository.jpa.FilaClienteRepositoryJpa;
+import br.com.tech.challenge.sistemapedido.infrastructure.persistence.repository.jpa.FilaRestauranteRepositoryJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
