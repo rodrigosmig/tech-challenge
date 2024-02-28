@@ -3,6 +3,7 @@ package br.com.tech.challenge.sistemapedido.application.gateway;
 import br.com.tech.challenge.sistemapedido.application.repository.UsuarioRepository;
 import br.com.tech.challenge.sistemapedido.domain.Usuario;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
+import br.com.tech.challenge.sistemapedido.application.service.AutenticacaoService;
 import jakarta.inject.Named;
 
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.Optional;
 @Named
 public class UsuarioGatewayImpl implements UsuarioGateway {
     private final UsuarioRepository repository;
+    private final AutenticacaoService autenticacaoService;
 
-    public UsuarioGatewayImpl(UsuarioRepository repository) {
+    public UsuarioGatewayImpl(UsuarioRepository repository, AutenticacaoService autenticacaoService) {
         this.repository = repository;
+        this.autenticacaoService = autenticacaoService;
     }
 
     @Override
@@ -32,11 +35,6 @@ public class UsuarioGatewayImpl implements UsuarioGateway {
     }
 
     @Override
-    public void excluir(Usuario usuario) {
-        repository.delete(usuario);
-    }
-
-    @Override
     public Optional<Usuario> buscarPorEmail(String email) {
         return repository.findByEmail(email);
     }
@@ -52,12 +50,12 @@ public class UsuarioGatewayImpl implements UsuarioGateway {
     }
 
     @Override
-    public Boolean existeCpf(String cpf) {
-        return repository.existsByCpf(cpf);
+    public String autenticar(String cpf, String senha) {
+        return autenticacaoService.autenticar(cpf, senha);
     }
 
     @Override
-    public Boolean existeEmail(String email) {
-        return repository.existsByEmail(email);
+    public Usuario registrar(Usuario usuario) {
+        return autenticacaoService.registrar(usuario);
     }
 }

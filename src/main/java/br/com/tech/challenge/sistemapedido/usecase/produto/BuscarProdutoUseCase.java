@@ -9,18 +9,14 @@ import java.util.List;
 
 @Named
 public class BuscarProdutoUseCase {
-    private final ProdutoGateway repository;
+    private final ProdutoGateway produtoGateway;
 
-    public BuscarProdutoUseCase(ProdutoGateway repository) {
-        this.repository = repository;
+    public BuscarProdutoUseCase(ProdutoGateway produtoGateway) {
+        this.produtoGateway = produtoGateway;
     }
 
-    public Produto buscarPorId(Long id) {
-        return repository.buscarPorId(id)
+    public Produto executar(Long id) {
+        return produtoGateway.buscarPorId(id)
                 .orElseThrow(() -> new ProdutoNaoEncontradoException(id));
-    }
-
-    public List<Produto> buscarTodos() {
-        return repository.buscarTodos();
     }
 }

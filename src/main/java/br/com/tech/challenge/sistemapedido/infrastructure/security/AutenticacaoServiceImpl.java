@@ -1,8 +1,8 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.security;
 
+import br.com.tech.challenge.sistemapedido.application.repository.UsuarioRepository;
 import br.com.tech.challenge.sistemapedido.domain.Usuario;
-import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
-import br.com.tech.challenge.sistemapedido.domain.service.AutenticarUsuarioService;
+import br.com.tech.challenge.sistemapedido.application.service.AutenticacaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class AutenticarUsuarioServiceImpl implements AutenticarUsuarioService {
+public class AutenticacaoServiceImpl implements AutenticacaoService {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
-    private final UsuarioGateway usuarioGateway;
+    private final UsuarioRepository usuarioRepository;
 
 
     @Override
@@ -28,15 +28,13 @@ public class AutenticarUsuarioServiceImpl implements AutenticarUsuarioService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String token = jwtTokenProvider.generateToken(authentication);
-
-        return token;
+        return jwtTokenProvider.generateToken(authentication);
     }
 
     @Override
     public Usuario registrar(Usuario usuario) {
         var usuarioComSenhaEncriptada = new Usuario(usuario.getNome(),
                 usuario.getCpf(), usuario.getEmail(), passwordEncoder.encode(usuario.getSenha()), usuario.getPapeis());
-        return usuarioGateway.salvar(usuarioComSenhaEncriptada);
+        return usuarioRepository.save(usuarioComSenhaEncriptada);
     }
 }

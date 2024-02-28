@@ -1,5 +1,6 @@
 package br.com.tech.challenge.sistemapedido.usecase.produto;
 
+import br.com.tech.challenge.sistemapedido.domain.exception.ProdutoNaoEncontradoException;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
 import jakarta.inject.Named;
 
@@ -11,9 +12,10 @@ public class ExcluirProdutoUseCase {
         this.produtoGateway = produtoGateway;
     }
 
-    public void excluir(Long id) {
-        var buscarProdutoUseCase = new BuscarProdutoUseCase(this.produtoGateway);
-        var produto = buscarProdutoUseCase.buscarPorId(id);
+    public void executar(Long id) {
+        var produto = this.produtoGateway.buscarPorId(id)
+                .orElseThrow(() -> new ProdutoNaoEncontradoException(id));
+
         produtoGateway.excluir(produto);
     }
 }

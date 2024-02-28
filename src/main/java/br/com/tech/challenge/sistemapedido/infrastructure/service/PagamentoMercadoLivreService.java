@@ -1,5 +1,6 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.service;
 
+import br.com.tech.challenge.sistemapedido.application.service.PagamentoService;
 import br.com.tech.challenge.sistemapedido.domain.ItemPedido;
 import br.com.tech.challenge.sistemapedido.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.domain.exception.InternalErrorException;
@@ -8,7 +9,6 @@ import br.com.tech.challenge.sistemapedido.infrastructure.integration.rest.merca
 import br.com.tech.challenge.sistemapedido.infrastructure.integration.rest.mercadopago.MercadoPagoHttpClient;
 import br.com.tech.challenge.sistemapedido.infrastructure.integration.rest.qrcodeapi.QrCodeHttpClient;
 import br.com.tech.challenge.sistemapedido.infrastructure.integration.transfer.ItemTO;
-import br.com.tech.challenge.sistemapedido.usecase.service.GerarPagamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class GerarPagamentoServiceImpl implements GerarPagamentoService {
+public class PagamentoMercadoLivreService implements PagamentoService {
     private final MercadoPagoHttpClient mercadopagoHttpClient;
     private final QrCodeHttpClient qrCodeHttpClient;
     private final Long HORAS_ADICIONAIS = 2L;
@@ -66,6 +66,18 @@ public class GerarPagamentoServiceImpl implements GerarPagamentoService {
             throw new InternalErrorException(e.getMessage());
         }
 
+    }
+
+    @Override
+    public Long confirmarPagamento(Long idExterno) {
+        var response = mercadopagoHttpClient.consultarMerchantOrder(idExterno);
+        var consultaPagamentoResponse = response.getBody();
+
+        if (Objects.nonNull(consultaPagamentoResponse) && consultaPagamentoResponse.isPaid()) {
+            return consultaPagamentoResponse.externalReference();
+        }
+
+        return null;
     }
 
     private GerarCodigoQrRequest obterRequest(Pedido pedido) {

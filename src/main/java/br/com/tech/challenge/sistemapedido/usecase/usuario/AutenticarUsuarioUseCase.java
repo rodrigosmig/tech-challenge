@@ -1,17 +1,17 @@
 package br.com.tech.challenge.sistemapedido.usecase.usuario;
 
-import br.com.tech.challenge.sistemapedido.domain.service.AutenticarUsuarioService;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
 import jakarta.inject.Named;
 
 @Named
 public class AutenticarUsuarioUseCase {
-    private final AutenticarUsuarioService service;
+    private final UsuarioGateway usuarioGateway;
 
-    public AutenticarUsuarioUseCase(AutenticarUsuarioService service) {
-        this.service = service;
+    public AutenticarUsuarioUseCase(UsuarioGateway usuarioGateway) {
+        this.usuarioGateway = usuarioGateway;
     }
 
     public String autenticar(String cpf, String senha) {
-        return service.autenticar(cpf, senha);
+        return this.usuarioGateway.autenticar(cpf, senha);
     }
 }

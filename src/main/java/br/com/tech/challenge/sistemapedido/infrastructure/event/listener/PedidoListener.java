@@ -8,7 +8,6 @@ import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.Fila
 import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.FilaRestauranteModel;
 import br.com.tech.challenge.sistemapedido.infrastructure.persistence.repository.jpa.FilaClienteRepositoryJpa;
 import br.com.tech.challenge.sistemapedido.infrastructure.persistence.repository.jpa.FilaRestauranteRepositoryJpa;
-import br.com.tech.challenge.sistemapedido.usecase.pedido.AlterarStatusPedidoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,6 @@ import java.util.LinkedList;
 @Component
 @RequiredArgsConstructor
 public class PedidoListener {
-    private final AlterarStatusPedidoUseCase alterarStatusPedido;
     private final FilaRestauranteRepositoryJpa filaRestauranteRepository;
     private final FilaClienteRepositoryJpa filaClienteRepositoryJpa;
     private final PedidoModelMapper pedidoDataMapper;

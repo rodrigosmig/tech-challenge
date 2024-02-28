@@ -1,6 +1,7 @@
 package br.com.tech.challenge.sistemapedido.usecase.produto;
 
 import br.com.tech.challenge.sistemapedido.domain.Produto;
+import br.com.tech.challenge.sistemapedido.domain.exception.ProdutoNaoEncontradoException;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
 import jakarta.inject.Named;
 
@@ -12,10 +13,9 @@ public class AlterarProdutoUseCase {
         this.produtoGateway = produtoGateway;
     }
 
-    public Produto alterar(Long id, Produto produtoAlterado) {
-        var buscarProdutoUseCase = new BuscarProdutoUseCase(this.produtoGateway);
-
-        var produtoAtual = buscarProdutoUseCase.buscarPorId(id);
+    public Produto executar(Long id, Produto produtoAlterado) {
+        var produtoAtual = this.produtoGateway.buscarPorId(id)
+                .orElseThrow(() -> new ProdutoNaoEncontradoException(id));
 
         var produtoAtualizado = atualizarDados(produtoAlterado, produtoAtual);
 

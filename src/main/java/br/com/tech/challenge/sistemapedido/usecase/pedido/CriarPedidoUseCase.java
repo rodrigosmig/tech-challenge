@@ -30,7 +30,7 @@ public class CriarPedidoUseCase {
     }
 
     @Transactional
-    public Pedido criar(List<ItemPedido> itensPedido, String cpf) {
+    public Pedido executar(List<ItemPedido> itensPedido, String cpf) {
         var novosItens = new LinkedList<ItemPedido>();
         var pedido = Pedido.builder()
                 .status(StatusPedido.RECEBIDO)
@@ -57,7 +57,7 @@ public class CriarPedidoUseCase {
     private List<ItemPedido> validarItens(List<ItemPedido> itens, Pedido pedido) {
         return itens.stream()
                 .map(itemPedido -> {
-                    var produto = buscarProdutoUseCase.buscarPorId(itemPedido.getProduto().getId());
+                    var produto = buscarProdutoUseCase.executar(itemPedido.getProduto().getId());
                     return ItemPedido.builder()
                             .quantidade(itemPedido.getQuantidade())
                             .observacao(itemPedido.getObservacao())

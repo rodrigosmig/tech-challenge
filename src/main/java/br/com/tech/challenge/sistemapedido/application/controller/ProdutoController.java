@@ -6,10 +6,7 @@ import br.com.tech.challenge.sistemapedido.application.response.CadastrarProduto
 import br.com.tech.challenge.sistemapedido.application.response.ListarProdutosResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ProdutoResponse;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
-import br.com.tech.challenge.sistemapedido.usecase.produto.AlterarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.produto.BuscarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.produto.CadastrarProdutoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.produto.ExcluirProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.produto.*;
 import jakarta.inject.Named;
 
 @Named
@@ -23,9 +20,9 @@ public class ProdutoController {
     }
 
     public ListarProdutosResponse listar() {
-        var buscarProdutoUseCase = new BuscarProdutoUseCase(this.produtoGateway);
+        var buscarTodosProdutosUseCase = new ListarProdutosUseCase(this.produtoGateway);
 
-        var produtos = buscarProdutoUseCase.buscarTodos();
+        var produtos = buscarTodosProdutosUseCase.executar();
 
         return new ListarProdutosResponse(produtoMapper.toList(produtos));
     }
@@ -33,27 +30,27 @@ public class ProdutoController {
     public ProdutoResponse buscar(Long id) {
         var buscarProdutoUseCase = new BuscarProdutoUseCase(this.produtoGateway);
 
-        var produto = buscarProdutoUseCase.buscarPorId(id);
+        var produto = buscarProdutoUseCase.executar(id);
 
         return new ProdutoResponse(produtoMapper.toDTO(produto));
     }
 
     public CadastrarProdutoResponse criar(ProdutoRequest request) {
         var cadastrarProdutoUseCase = new CadastrarProdutoUseCase(this.produtoGateway);
-        var produto = cadastrarProdutoUseCase.cadastrar(produtoMapper.toDomain(request));
+        var produto = cadastrarProdutoUseCase.executar(produtoMapper.toDomain(request));
 
         return new CadastrarProdutoResponse(produto.getId());
     }
 
     public ProdutoResponse alterar(Long id, ProdutoRequest request) {
         var alterarProdutoUseCase = new AlterarProdutoUseCase(this.produtoGateway);
-        var produto = alterarProdutoUseCase.alterar(id, produtoMapper.toDomain(request));
+        var produto = alterarProdutoUseCase.executar(id, produtoMapper.toDomain(request));
 
         return new ProdutoResponse(produtoMapper.toDTO(produto));
     }
 
     public void excluir(Long id) {
         var excluirProdutoUseCase = new ExcluirProdutoUseCase(this.produtoGateway);
-        excluirProdutoUseCase.excluir(id);
+        excluirProdutoUseCase.executar(id);
     }
 }

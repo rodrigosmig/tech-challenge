@@ -5,30 +5,16 @@ import br.com.tech.challenge.sistemapedido.domain.exception.PedidoNaoEncontradoE
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import jakarta.inject.Named;
 
-import java.util.List;
-
 @Named
 public class BuscarPedidoUseCase {
-    private final PedidoGateway repository;
+    private final PedidoGateway pedidoGateway;
 
-    public BuscarPedidoUseCase(PedidoGateway repository) {
-        this.repository = repository;
+    public BuscarPedidoUseCase(PedidoGateway pedidoGateway) {
+        this.pedidoGateway = pedidoGateway;
     }
 
-    public Pedido buscarPorId(Long id) {
-        return repository.buscarPorId(id)
+    public Pedido executar(Long id) {
+        return pedidoGateway.buscarPorId(id)
                 .orElseThrow(() -> new PedidoNaoEncontradoException(id));
-    }
-
-    public List<Pedido> buscarTodos() {
-        return repository.buscarTodos();
-    }
-
-    public List<Pedido> buscarFilaRestaurante() {
-        return repository.buscarFilaRestaurante();
-    }
-
-    public List<Pedido> buscarFilaCliente() {
-        return repository.buscarFilaCliente();
     }
 }

@@ -16,14 +16,12 @@ public class FilaController {
     }
 
     public ListarPedidosResponse filaRestaurante() {
-        //TODO adicionar use case para a fila
         var pedidos = pedidoGateway.buscarFilaRestaurante();
 
         return new ListarPedidosResponse(pedidoMapper.toList(pedidos));
     }
 
     public ListarPedidosResponse filaCLiente() {
-        //TODO adicionar use case para a fila
         var pedidos = pedidoGateway.buscarFilaCliente();
 
         return new ListarPedidosResponse(pedidoMapper.toList(pedidos));

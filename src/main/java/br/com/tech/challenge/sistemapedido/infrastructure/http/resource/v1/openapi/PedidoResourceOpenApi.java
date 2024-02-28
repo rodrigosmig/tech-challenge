@@ -109,27 +109,4 @@ public interface PedidoResourceOpenApi {
             )
     })
     ResponseEntity<StatusPedidoResponse> verificarStatus(Long id);
-
-    @Operation(summary = "Gera o pagamento por QR-Code")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200"),
-            @ApiResponse(responseCode = "404",
-                    description = "Pedido não encontrado",
-                    content = @Content(
-                            examples = {
-                                    @ExampleObject(
-                                            value="{\"mensagem\": \"Pedido não encontrado\"}"
-                                    )
-                            }
-                    )
-            )
-    })
-    ResponseEntity<ByteArrayResource> gerarPagamento(Long id) throws IOException;
-
-
-    @Operation(summary = "Recebe a confirmação de Pagamento do Mercado Livre")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200")
-    })
-    ResponseEntity<Void> receberConfirmacaoPagamento(Long id, EventoConfirmacaoPagamento topic);
 }

@@ -1,6 +1,7 @@
 package br.com.tech.challenge.sistemapedido.usecase.pedido;
 
 import br.com.tech.challenge.sistemapedido.domain.StatusPedido;
+import br.com.tech.challenge.sistemapedido.domain.exception.PedidoNaoEncontradoException;
 import br.com.tech.challenge.sistemapedido.domain.exception.PedidoNaoPagoException;
 import br.com.tech.challenge.sistemapedido.domain.exception.PedidoStatusIncorretoException;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
@@ -9,15 +10,14 @@ import jakarta.inject.Named;
 @Named
 public class AlterarStatusPedidoUseCase {
     private final PedidoGateway pedidoGateway;
-    private final BuscarPedidoUseCase buscarPedidoUseCase;
 
-    public AlterarStatusPedidoUseCase(PedidoGateway pedidoGateway, BuscarPedidoUseCase buscarPedidoUseCase) {
+    public AlterarStatusPedidoUseCase(PedidoGateway pedidoGateway) {
         this.pedidoGateway = pedidoGateway;
-        this.buscarPedidoUseCase = buscarPedidoUseCase;
     }
 
     public void alterarParaEmPreparacao(Long idPedido) {
-        var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
+        var pedido = pedidoGateway.buscarPorId(idPedido)
+                .orElseThrow(() -> new PedidoNaoEncontradoException(idPedido));
 
         if (Boolean.FALSE.equals(pedido.estaPago())) {
             throw new PedidoNaoPagoException(pedido.getId());
@@ -33,7 +33,8 @@ public class AlterarStatusPedidoUseCase {
     }
 
     public void alterarParaPronto(Long idPedido) {
-        var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
+        var pedido = pedidoGateway.buscarPorId(idPedido)
+                .orElseThrow(() -> new PedidoNaoEncontradoException(idPedido));
 
         if (Boolean.FALSE.equals(pedido.estaPago())) {
             throw new PedidoNaoPagoException(pedido.getId());
@@ -49,7 +50,8 @@ public class AlterarStatusPedidoUseCase {
     }
 
     public void alterarParaFinalizado(Long idPedido) {
-        var pedido = buscarPedidoUseCase.buscarPorId(idPedido);
+        var pedido = pedidoGateway.buscarPorId(idPedido)
+                .orElseThrow(() -> new PedidoNaoEncontradoException(idPedido));
 
         if (Boolean.FALSE.equals(pedido.estaPago())) {
             throw new PedidoNaoPagoException(pedido.getId());

@@ -64,7 +64,8 @@ public class Pedido {
     }
 
     public void adicionarItens(List<ItemPedido> itens) {
-        this.itens = itens;
+        this.itens.clear();
+        this.itens.addAll(itens);
     }
     public void adicionarUsuario(Usuario usuario) {
         this.usuario = usuario;

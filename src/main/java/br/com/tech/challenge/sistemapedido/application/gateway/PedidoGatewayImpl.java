@@ -1,11 +1,12 @@
 package br.com.tech.challenge.sistemapedido.application.gateway;
 
+import br.com.tech.challenge.sistemapedido.application.events.AlteracaoStatusPedidoEventPublisher;
+import br.com.tech.challenge.sistemapedido.application.events.PedidoPagoEventPublisher;
 import br.com.tech.challenge.sistemapedido.application.repository.FilaRepository;
 import br.com.tech.challenge.sistemapedido.application.repository.PedidoRepository;
 import br.com.tech.challenge.sistemapedido.domain.Pedido;
 import br.com.tech.challenge.sistemapedido.domain.event.AlteracaoStatusPedidoEvent;
 import br.com.tech.challenge.sistemapedido.domain.event.PedidoPagoEvent;
-import br.com.tech.challenge.sistemapedido.infrastructure.event.publisher.PedidoPublisher;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import jakarta.inject.Named;
 
@@ -13,16 +14,21 @@ import java.util.List;
 import java.util.Optional;
 
 @Named
-//TODO gateway vai ficar na camada de aplicação e não pode conhecer a camada de infra
 public class PedidoGatewayImpl implements PedidoGateway {
     private final PedidoRepository pedidoRepository;
     private final FilaRepository filaRepository;
-    private final PedidoPublisher pedidoPublisher;
+    private final PedidoPagoEventPublisher pedidoPagoPublisher;
+    private final AlteracaoStatusPedidoEventPublisher alteracaoStatusPedidoEventPublisher;
 
-    public PedidoGatewayImpl(PedidoRepository pedidoRepository, FilaRepository filaRepository, PedidoPublisher pedidoPublisher) {
+
+    public PedidoGatewayImpl(PedidoRepository pedidoRepository,
+                             FilaRepository filaRepository,
+                             PedidoPagoEventPublisher pedidoPagoPublisher,
+                             AlteracaoStatusPedidoEventPublisher alteracaoStatusPedidoEventPublisher) {
         this.pedidoRepository = pedidoRepository;
         this.filaRepository = filaRepository;
-        this.pedidoPublisher = pedidoPublisher;
+        this.pedidoPagoPublisher = pedidoPagoPublisher;
+        this.alteracaoStatusPedidoEventPublisher = alteracaoStatusPedidoEventPublisher;
     }
 
     @Override
@@ -42,17 +48,15 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
     @Override
     public void pagar(Pedido pedido) {
-        pedidoRepository.save(pedido);
-        //TODO alterar publicador de evento
-        pedidoPublisher.publishPedidoPagoEvent(new PedidoPagoEvent(pedido));
+        this.salvar(pedido);
+        pedidoPagoPublisher.publicar(new PedidoPagoEvent(pedido));
     }
 
     @Override
     public void alterarStatus(Pedido pedido) {
         pedidoRepository.save(pedido);
 
-        //TODO alterar publicador de evento
-        pedidoPublisher.publishAteracaoStatusPedidoEvent(new AlteracaoStatusPedidoEvent(pedido));
+        alteracaoStatusPedidoEventPublisher.publicar(new AlteracaoStatusPedidoEvent(pedido));
     }
 
     @Override

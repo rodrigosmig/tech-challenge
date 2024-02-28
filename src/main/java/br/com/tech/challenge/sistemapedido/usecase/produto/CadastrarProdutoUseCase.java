@@ -12,7 +12,7 @@ public class CadastrarProdutoUseCase {
         this.repository = repository;
     }
 
-    public Produto cadastrar(Produto produto) {
+    public Produto executar(Produto produto) {
         return repository.salvar(produto);
     }
 }

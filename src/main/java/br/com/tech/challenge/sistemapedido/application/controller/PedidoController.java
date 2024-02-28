@@ -12,6 +12,7 @@ import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
 import br.com.tech.challenge.sistemapedido.usecase.pedido.AlterarStatusPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.pedido.BuscarPedidoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.pedido.CriarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.pedido.ListarPedidosUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.produto.BuscarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.usuario.ObterUsuarioUseCase;
 import jakarta.inject.Named;
@@ -41,55 +42,37 @@ public class PedidoController {
         var obterUsuarioUseCase = new ObterUsuarioUseCase(this.usuarioGateway);
         var criarPedidoUseCase = new CriarPedidoUseCase(buscarProdutoUseCase, obterUsuarioUseCase, this.pedidoGateway);
 
-        var pedido = criarPedidoUseCase.criar(itemPedidoMapper.toDomainList(request.itens()), request.cpf());
+        var pedido = criarPedidoUseCase.executar(itemPedidoMapper.toDomainList(request.itens()), request.cpf());
 
         return new CadastrarPedidoResponse(pedido.getId());
     }
 
     public ListarPedidosResponse listar() {
-        var buscarPedidoUseCase = new BuscarPedidoUseCase(this.pedidoGateway);
-        var pedidos = buscarPedidoUseCase.buscarTodos();
+        var listarPedidosUseCase = new ListarPedidosUseCase(this.pedidoGateway);
+        var pedidos = listarPedidosUseCase.executar();
 
         return new ListarPedidosResponse(pedidoMapper.toList(pedidos));
     }
 
     public StatusPedidoResponse verificarStatus(Long id) {
         var buscarPedidoUseCase = new BuscarPedidoUseCase(this.pedidoGateway);
-        var pedido = buscarPedidoUseCase.buscarPorId(id);
+        var pedido = buscarPedidoUseCase.executar(id);
 
         return new StatusPedidoResponse(pedido.estaPago());
     }
 
-    //TODO converter ConfirmarPagamento em Caso de Uso
-//    public void receberConfirmacaoPagamento(Long id) {
-//        confirmarPagamento.confirmarPagamento(id);
-//    }
-
-    //TODO converter ConfirmarPagamento em Caso de Uso
-//    public void pagar(Long idPedido) {
-//        var pagarPedidoUseCase = new GerarPagamentoService(this.pedidoGateway);
-//        pagarPedidoUseCase.pagar(idPedido);
-//    }
-//
-//    public File gerarPagamento(Long idPedido) {
-//        return pagarPedidoUseCase.gerarPagamento(idPedido);
-//    }
-
     public void preparacao(Long idPedido) {
-        var buscarPedidoUseCase = new BuscarPedidoUseCase(this.pedidoGateway);
-        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway, buscarPedidoUseCase);
+        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
         alterarStatusPedidoUseCase.alterarParaEmPreparacao(idPedido);
     }
 
     public void pronto(Long idPedido) {
-        var buscarPedidoUseCase = new BuscarPedidoUseCase(this.pedidoGateway);
-        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway, buscarPedidoUseCase);
+        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
         alterarStatusPedidoUseCase.alterarParaPronto(idPedido);
     }
 
     public void finalizado(Long idPedido) {
-        var buscarPedidoUseCase = new BuscarPedidoUseCase(this.pedidoGateway);
-        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway, buscarPedidoUseCase);
+        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
         alterarStatusPedidoUseCase.alterarParaFinalizado(idPedido);
     }
 }
