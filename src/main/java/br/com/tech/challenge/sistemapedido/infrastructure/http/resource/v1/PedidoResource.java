@@ -72,34 +72,4 @@ public class PedidoResource implements PedidoResourceOpenApi {
 
         return ResponseEntity.ok(resposta);
     }
-
-    @Override
-    @PostMapping("/{idPedido}/gerar-pagamento")
-    public ResponseEntity<ByteArrayResource> gerarPagamento(@PathVariable Long idPedido) throws IOException {
-        var arquivo = controller.gerarPagamento(idPedido);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=mercadopago.png");
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentLength(arquivo.length())
-                .contentType(MediaType.IMAGE_PNG)
-                .body(new ByteArrayResource(Files.readAllBytes(arquivo.toPath())));
-    }
-
-    @Override
-    @PostMapping("/confirmar-pagamento")
-    public ResponseEntity<Void> receberConfirmacaoPagamento(@RequestParam(required = false) Long id,
-                                                      @RequestParam(required = false) EventoConfirmacaoPagamento topic) {
-
-        if (EventoConfirmacaoPagamento.MOCK.equals(topic) && Objects.nonNull(id)) {
-            controller.pagar(id);
-        }
-
-        if (EventoConfirmacaoPagamento.MERCHANT_ORDER.equals(topic) && Objects.nonNull(id)) {
-            controller.receberConfirmacaoPagamento(id);
-        }
-
-        return ResponseEntity.ok().build();
-    }
 }

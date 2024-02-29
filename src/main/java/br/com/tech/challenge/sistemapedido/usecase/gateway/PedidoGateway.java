@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface PedidoGateway {
     Optional<Pedido> buscarPorId(Long id);
     List<Pedido> buscarTodos();
-    Pedido salvar(Pedido pedido, List<ItemPedido> itemPedidos);
+    Pedido salvar(Pedido pedido);
     void pagar(Pedido pedido);
     void alterarStatus(Pedido pedido);
     List<Pedido> buscarFilaRestaurante();

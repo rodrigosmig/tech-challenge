@@ -6,81 +6,73 @@ import br.com.tech.challenge.sistemapedido.application.request.PedidoRequest;
 import br.com.tech.challenge.sistemapedido.application.response.CadastrarPedidoResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ListarPedidosResponse;
 import br.com.tech.challenge.sistemapedido.application.response.StatusPedidoResponse;
-import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.AlterarStatusPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.BuscarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.CriarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.contract.pedido.PagarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.service.ConfirmarPagamento;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
+import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
+import br.com.tech.challenge.sistemapedido.usecase.pedido.AlterarStatusPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.pedido.BuscarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.pedido.CriarPedidoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.pedido.ListarPedidosUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.produto.BuscarProdutoUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.usuario.ObterUsuarioUseCase;
 import jakarta.inject.Named;
-
-import java.io.File;
 
 @Named
 public class PedidoController {
-    private final CriarPedidoUseCase criarPedidoUseCase;
-    private final BuscarPedidoUseCase buscarPedidoUseCase;
-    private final PagarPedidoUseCase pagarPedidoUseCase;
-    private final AlterarStatusPedidoUseCase alterarStatusPedidoUseCase;
-    private final ConfirmarPagamento confirmarPagamento;
-    private final ItemPedidoDataMapper itemPedidoMapper;
+    private final PedidoGateway pedidoGateway;
+    private final ProdutoGateway produtoGateway;
+    private final UsuarioGateway usuarioGateway;
     private final PedidoDataMapper pedidoMapper;
+    private final ItemPedidoDataMapper itemPedidoMapper;
 
-
-    public PedidoController(CriarPedidoUseCase criarPedidoUseCase,
-                            BuscarPedidoUseCase buscarPedidoUseCase,
-                            PagarPedidoUseCase pagarPedidoUseCase,
-                            AlterarStatusPedidoUseCase alterarStatusPedidoUseCase,
-                            ConfirmarPagamento confirmarPagamento,
-                            ItemPedidoDataMapper itemPedidoMapper,
-                            PedidoDataMapper pedidoMapper) {
-        this.criarPedidoUseCase = criarPedidoUseCase;
-        this.buscarPedidoUseCase = buscarPedidoUseCase;
-        this.pagarPedidoUseCase = pagarPedidoUseCase;
-        this.alterarStatusPedidoUseCase = alterarStatusPedidoUseCase;
-        this.confirmarPagamento = confirmarPagamento;
-        this.itemPedidoMapper = itemPedidoMapper;
+    public PedidoController(PedidoGateway pedidoGateway,
+                            ProdutoGateway produtoGateway,
+                            UsuarioGateway usuarioGateway,
+                            PedidoDataMapper pedidoMapper,
+                            ItemPedidoDataMapper itemPedidoMapper) {
+        this.pedidoGateway = pedidoGateway;
+        this.produtoGateway = produtoGateway;
+        this.usuarioGateway = usuarioGateway;
         this.pedidoMapper = pedidoMapper;
+        this.itemPedidoMapper = itemPedidoMapper;
     }
 
     public CadastrarPedidoResponse criar(PedidoRequest request) {
-        var pedido = criarPedidoUseCase.criar(itemPedidoMapper.toDomainList(request.itens()), request.cpf());
+        var buscarProdutoUseCase = new BuscarProdutoUseCase(this.produtoGateway);
+        var obterUsuarioUseCase = new ObterUsuarioUseCase(this.usuarioGateway);
+        var criarPedidoUseCase = new CriarPedidoUseCase(buscarProdutoUseCase, obterUsuarioUseCase, this.pedidoGateway);
+
+        var pedido = criarPedidoUseCase.executar(itemPedidoMapper.toDomainList(request.itens()), request.cpf());
 
         return new CadastrarPedidoResponse(pedido.getId());
     }
 
     public ListarPedidosResponse listar() {
-        var pedidos = buscarPedidoUseCase.buscarTodos();
+        var listarPedidosUseCase = new ListarPedidosUseCase(this.pedidoGateway);
+        var pedidos = listarPedidosUseCase.executar();
 
         return new ListarPedidosResponse(pedidoMapper.toList(pedidos));
     }
 
     public StatusPedidoResponse verificarStatus(Long id) {
-        var pedido = buscarPedidoUseCase.buscarPorId(id);
+        var buscarPedidoUseCase = new BuscarPedidoUseCase(this.pedidoGateway);
+        var pedido = buscarPedidoUseCase.executar(id);
 
         return new StatusPedidoResponse(pedido.estaPago());
     }
 
-    public void receberConfirmacaoPagamento(Long id) {
-        confirmarPagamento.confirmarPagamento(id);
-    }
-
-    public void pagar(Long idPedido) {
-        pagarPedidoUseCase.pagar(idPedido);
-    }
-
-    public File gerarPagamento(Long idPedido) {
-        return pagarPedidoUseCase.gerarPagamento(idPedido);
-    }
-
     public void preparacao(Long idPedido) {
+        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
         alterarStatusPedidoUseCase.alterarParaEmPreparacao(idPedido);
     }
 
     public void pronto(Long idPedido) {
+        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
         alterarStatusPedidoUseCase.alterarParaPronto(idPedido);
     }
 
     public void finalizado(Long idPedido) {
+        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
         alterarStatusPedidoUseCase.alterarParaFinalizado(idPedido);
     }
 }

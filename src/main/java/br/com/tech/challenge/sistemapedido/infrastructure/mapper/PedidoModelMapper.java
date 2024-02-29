@@ -7,6 +7,7 @@ import br.com.tech.challenge.sistemapedido.infrastructure.persistence.model.Pedi
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 @Component
@@ -22,6 +23,7 @@ public class PedidoModelMapper {
                 .dataCriacao(new Data(pedido.getDataCriacao()))
                 .dataAtualizacao(new Data(pedido.getDataAtualizacao()))
                 .total(new Preco(pedido.getTotal()))
+                .itens(new ArrayList<>())
                 .pago(pedido.getPago());
 
         if (Objects.nonNull(pedido.getUsuario())) {

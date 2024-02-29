@@ -12,15 +12,13 @@ public interface UsuarioGateway {
 
     Usuario salvar(Usuario usuario);
 
-    void excluir(Usuario usuario);
-
     Optional<Usuario> buscarPorEmail(String email);
 
     Optional<Usuario> buscarPorCpfOuEmail(String cpf, String email);
 
     Optional<Usuario> buscarPorCpf(String cpf);
 
-    Boolean existeCpf(String cpf);
+    String autenticar(String cpf, String senha);
 
-    Boolean existeEmail(String email);
+    Usuario registrar(Usuario usuario);
 }

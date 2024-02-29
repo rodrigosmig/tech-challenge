@@ -31,6 +31,7 @@ class ArchitectureTest {
                 .whereLayer("UseCase").mayOnlyAccessLayers("Domain")
                 .whereLayer("Application").mayOnlyAccessLayers("UseCase", "Domain")
                 .whereLayer("Application").mayOnlyBeAccessedByLayers("Infrastructure")
+                .whereLayer("UseCase").mayOnlyBeAccessedByLayers("Application")
                 .check(jc);
     }
 }
