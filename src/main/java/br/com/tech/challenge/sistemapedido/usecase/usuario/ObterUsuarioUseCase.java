@@ -13,7 +13,7 @@ public class ObterUsuarioUseCase {
         this.usuarioGateway = usuarioGateway;
     }
 
-    public Usuario obterPorCPF(String cpf) {
+    public Usuario executar(String cpf) {
         return usuarioGateway.buscarPorCpf(cpf)
                 .orElseThrow(() -> new UsuarioNaoEncontradoException(cpf));
     }

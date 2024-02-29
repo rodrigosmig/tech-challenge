@@ -8,13 +8,13 @@ import java.util.List;
 
 @Named
 public class ListarPedidosUseCase {
-    private final PedidoGateway repository;
+    private final PedidoGateway pedidoGateway;
 
-    public ListarPedidosUseCase(PedidoGateway repository) {
-        this.repository = repository;
+    public ListarPedidosUseCase(PedidoGateway pedidoGateway) {
+        this.pedidoGateway = pedidoGateway;
     }
 
     public List<Pedido> executar() {
-        return repository.buscarTodos();
+        return pedidoGateway.buscarTodos();
     }
 }
