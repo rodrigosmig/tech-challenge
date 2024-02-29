@@ -1,0 +1,12 @@
+name: Deployment
+
+on: [push, pull_request]
+
+jobs:
+  testes-unitarios:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: mvn test -DskipITs=true
