@@ -134,6 +134,6 @@ class ProdutoResourceIT {
         mockMvc.perform(delete(PATH + "/{idPedido}", 1234)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
     }
 }
