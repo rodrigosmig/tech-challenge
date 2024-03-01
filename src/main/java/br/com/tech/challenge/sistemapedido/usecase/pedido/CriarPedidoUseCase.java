@@ -47,7 +47,7 @@ public class CriarPedidoUseCase {
         pedido.calcularTotal();
 
         if(validarCpf(cpf)) {
-            var usuario = obterUsuarioUseCase.obterPorCPF(cpf);
+            var usuario = obterUsuarioUseCase.executar(cpf);
             pedido.adicionarUsuario(usuario);
         }
 

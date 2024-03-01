@@ -12,7 +12,7 @@ public class RegistrarUsuarioUseCase {
         this.usuarioGateway = usuarioGateway;
     }
 
-    public Usuario registrar(Usuario usuario) {
+    public Usuario executar(Usuario usuario) {
         return this.usuarioGateway.registrar(usuario);
     }
 }

@@ -18,38 +18,38 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class AlterarProdutoUseCaseTest {
+class ExcluirProdutoUseCaseTest {
     @Mock
     private ProdutoGateway gateway;
     @InjectMocks
-    private AlterarProdutoUseCase underTest;
+    private ExcluirProdutoUseCase underTest;
 
     @Test
-    void deveriaAlterarUmProdutoComSucesso() {
+    void deveriaExcluirUmProdutoComSucesso() {
         var produto = TestObjects.getProduto("Produto Teste");
 
         when(gateway.buscarPorId(anyLong()))
                 .thenReturn(Optional.of(produto));
-        when(gateway.salvar(any(Produto.class)))
-                .thenReturn(produto);
+        doNothing().when(gateway)
+                .excluir(any(Produto.class));
 
-        underTest.executar(1L, produto);
+        underTest.executar(1L);
 
         verify(gateway).buscarPorId(anyLong());
-        verify(gateway).salvar(any(Produto.class));
+        verify(gateway).excluir(any(Produto.class));
     }
 
     @Test
     void deveriaLancarExcecaoQuandoNaoEncontrarOProduto() {
-        var produto = TestObjects.getProduto("Produto Teste");
         var idProduto = 2L;
+
         when(gateway.buscarPorId(anyLong()))
                 .thenReturn(Optional.empty());
 
         assertThrows(ProdutoNaoEncontradoException.class, () ->
-                underTest.executar(idProduto, produto));
+                underTest.executar(idProduto));
 
         verify(gateway).buscarPorId(anyLong());
-        verify(gateway, never()).salvar(any(Produto.class));
+        verify(gateway, never()).excluir(any(Produto.class));
     }
 }

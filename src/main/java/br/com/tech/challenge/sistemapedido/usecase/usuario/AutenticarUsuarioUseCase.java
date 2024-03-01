@@ -11,7 +11,7 @@ public class AutenticarUsuarioUseCase {
         this.usuarioGateway = usuarioGateway;
     }
 
-    public String autenticar(String cpf, String senha) {
+    public String executar(String cpf, String senha) {
         return this.usuarioGateway.autenticar(cpf, senha);
     }
 }

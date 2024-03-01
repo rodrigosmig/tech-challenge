@@ -9,10 +9,7 @@ import br.com.tech.challenge.sistemapedido.application.response.StatusPedidoResp
 import br.com.tech.challenge.sistemapedido.usecase.gateway.PedidoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
 import br.com.tech.challenge.sistemapedido.usecase.gateway.UsuarioGateway;
-import br.com.tech.challenge.sistemapedido.usecase.pedido.AlterarStatusPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.pedido.BuscarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.pedido.CriarPedidoUseCase;
-import br.com.tech.challenge.sistemapedido.usecase.pedido.ListarPedidosUseCase;
+import br.com.tech.challenge.sistemapedido.usecase.pedido.*;
 import br.com.tech.challenge.sistemapedido.usecase.produto.BuscarProdutoUseCase;
 import br.com.tech.challenge.sistemapedido.usecase.usuario.ObterUsuarioUseCase;
 import jakarta.inject.Named;
@@ -62,17 +59,17 @@ public class PedidoController {
     }
 
     public void preparacao(Long idPedido) {
-        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
-        alterarStatusPedidoUseCase.alterarParaEmPreparacao(idPedido);
+        var alterarStatusPedidoUseCase = new AlterarStatusPedidoParaEmPreparacao(this.pedidoGateway);
+        alterarStatusPedidoUseCase.executar(idPedido);
     }
 
     public void pronto(Long idPedido) {
-        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
-        alterarStatusPedidoUseCase.alterarParaPronto(idPedido);
+        var alterarStatusPedidoParaProntoUseCase = new AlterarStatusPedidoParaProntoUseCase(this.pedidoGateway);
+        alterarStatusPedidoParaProntoUseCase.executar(idPedido);
     }
 
     public void finalizado(Long idPedido) {
-        var alterarStatusPedidoUseCase = new AlterarStatusPedidoUseCase(this.pedidoGateway);
-        alterarStatusPedidoUseCase.alterarParaFinalizado(idPedido);
+        var alterarStatusPedidoParaFinalizadoUseCase = new AlterarStatusPedidoParaFinalizadoUseCase(this.pedidoGateway);
+        alterarStatusPedidoParaFinalizadoUseCase.executar(idPedido);
     }
 }

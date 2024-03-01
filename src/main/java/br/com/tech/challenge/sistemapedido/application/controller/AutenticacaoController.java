@@ -17,12 +17,12 @@ public class AutenticacaoController {
     public String autenticarUsuario(String cpf, String senha) {
         var autenticarUsuarioUseCase = new AutenticarUsuarioUseCase(this.usuarioGateway);
 
-        return autenticarUsuarioUseCase.autenticar(cpf, senha);
+        return autenticarUsuarioUseCase.executar(cpf, senha);
     }
 
     public Usuario registrarUsuario(Usuario usuario) {
         var registrarUsuarioUseCase = new RegistrarUsuarioUseCase(this.usuarioGateway);
 
-        return registrarUsuarioUseCase.registrar(usuario);
+        return registrarUsuarioUseCase.executar(usuario);
     }
 }
