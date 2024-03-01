@@ -37,5 +37,5 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Executando testes unitários
+      - name: Executando testes integrados
         run: mvn failsafe:integration-test
