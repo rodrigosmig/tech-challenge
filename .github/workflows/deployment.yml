@@ -38,4 +38,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Executando testes integrados
-        run: mvn failsafe:integration-test
+        run: mvn test -Dtest=*IT
