@@ -1,11 +1,11 @@
 package br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1;
 
 import br.com.tech.challenge.sistemapedido.application.controller.ProdutoController;
-import br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1.openapi.ProdutoResourceOpenApi;
 import br.com.tech.challenge.sistemapedido.application.request.ProdutoRequest;
 import br.com.tech.challenge.sistemapedido.application.response.CadastrarProdutoResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ListarProdutosResponse;
 import br.com.tech.challenge.sistemapedido.application.response.ProdutoResponse;
+import br.com.tech.challenge.sistemapedido.infrastructure.http.resource.v1.openapi.ProdutoResourceOpenApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

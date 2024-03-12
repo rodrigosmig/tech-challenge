@@ -18,6 +18,10 @@ spring:
             continue-on-error: true
             encoding: UTF-8
             mode: always
+    data:
+      redis:
+          host: localhost
+          port: 6379
     cloud:
       openfeign:
         client:
@@ -43,3 +47,7 @@ rest:
             user-id: 1654958216
             pos-id: FIAP001POS001
             notification-url: "https://b321-187-19-179-63.ngrok-free.app/api/v1/pedidos/confirmar-pagamento"
+            
+cache:
+    config:
+        ttl: 60

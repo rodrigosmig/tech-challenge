@@ -23,8 +23,8 @@ public interface ProdutoResourceOpenApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200")
     })
-
     ResponseEntity<ListarProdutosResponse> listar();
+    
     @Operation(summary = "Busca um produto")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200"),

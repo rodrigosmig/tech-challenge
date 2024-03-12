@@ -5,8 +5,6 @@ import br.com.tech.challenge.sistemapedido.domain.exception.ProdutoNaoEncontrado
 import br.com.tech.challenge.sistemapedido.usecase.gateway.ProdutoGateway;
 import jakarta.inject.Named;
 
-import java.util.List;
-
 @Named
 public class BuscarProdutoUseCase {
     private final ProdutoGateway produtoGateway;
